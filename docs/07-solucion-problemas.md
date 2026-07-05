@@ -1,0 +1,284 @@
+---
+title: "Solución de problemas"
+description: "Errores comunes, causas y soluciones para problemas del Digital Brain"
+tags: [troubleshooting, errores]
+sidebar_position: 7
+---
+
+# 🛠️ Solución de problemas comunes
+
+> Problemas frecuentes y cómo resolverlos rápidamente.
+
+## 📋 Tabla de contenidos
+
+- [❌ Problema: Claude CLI no se encuentra](#-problema-claude-cli-no-se-encuentra)
+- [❌ Problema: API Key no configurada](#-problema-api-key-no-configurada)
+- [❌ Problema: MCP Server no se conecta](#-problema-mcp-server-no-se-conecta)
+- [❌ Problema: Claude no puede leer mis notas](#-problema-claude-no-puede-leer-mis-notas)
+- [❌ Problema: Error de permisos](#-problema-error-de-permisos)
+- [❌ Problema: npm install falla](#-problema-npm-install-falla)
+- [❌ Problema: Los prompts no funcionan](#-problema-los-prompts-no-funcionan-como-esperaba)
+- [❌ Problema: Obsidian no muestra los cambios](#-problema-obsidian-no-muestra-los-cambios)
+- [❌ Problema: Backups fallan](#-problema-backups-fallan)
+- [🔍 Diagnóstico rápido](#-diagnóstico-rápido)
+
+---
+
+## ❌ Problema: Claude CLI no se encuentra
+
+```bash
+zsh: command not found: claude
+```
+
+**Causa:** Claude CLI no está instalado o no está en el PATH.
+
+**Solución:**
+
+```bash
+# Verificar si está instalado
+npm list -g @anthropic-ai/claude-code
+
+# Si no aparece, instalarlo
+npm install -g @anthropic-ai/claude-code
+
+# Verificar la ubicación
+which claude || echo "No está en PATH"
+```
+
+**Si está instalado pero no en PATH:**
+```bash
+# Agregar al PATH
+export PATH="$PATH:$(npm root -g)/bin"
+# Hacerlo permanente
+echo 'export PATH="$PATH:$(npm root -g)/bin"' >> ~/.zshrc
+```
+
+---
+
+## ❌ Problema: API Key no configurada
+
+```bash
+Error: ANTHROPIC_API_KEY is not set
+```
+
+**Solución:**
+
+```bash
+# Configurar temporalmente (para probar)
+export ANTHROPIC_API_KEY="sk-ant-xxxxxxxxxxxxx"
+
+# Configurar permanentemente
+echo 'export ANTHROPIC_API_KEY="sk-ant-xxxxxxxxxxxxx"' >> ~/.zshrc
+source ~/.zshrc
+
+# Verificar
+echo $ANTHROPIC_API_KEY
+```
+
+---
+
+## ❌ Problema: MCP Server no se conecta
+
+```bash
+Error: Could not connect to MCP server obsidian
+```
+
+**Causas posibles:**
+
+1. **El vault path es incorrecto**
+   ```bash
+   # Verificar que la ruta existe
+   ls /ruta/a/tu/vault
+   # Debe mostrar archivos .md
+   ```
+
+2. **El servidor no está instalado**
+   ```bash
+   npm install -g @n8n/obsidian-mcp-server
+   ```
+
+3. **Puerto ocupado**
+   ```bash
+   # Verificar qué está usando el puerto
+   lsof -i :3000
+   # Cambiar el puerto en la configuración si es necesario
+   ```
+
+4. **Firewall bloqueando**
+   ```bash
+   # En macOS, revisar configuración de firewall
+   # Preferencias del Sistema → Red → Firewall
+   ```
+
+---
+
+## ❌ Problema: Claude no puede leer mis notas
+
+```bash
+Claude responde: "No encontré notas en tu vault"
+```
+
+**Solución:**
+
+```bash
+# 1. Verificar que el MCP server funciona
+claude mcp list
+
+# 2. Probar la conexión directamente
+claude mcp call obsidian list_notes limit=5
+
+# 3. Verificar que el vault tiene archivos .md
+ls /ruta/a/tu/vault/**/*.md 2>/dev/null | head -10
+
+# 4. Si está vacío, crear una nota de prueba
+echo "# Nota de prueba" > /ruta/a/tu/vault/prueba.md
+```
+
+---
+
+## ❌ Problema: Error de permisos
+
+```bash
+Error: EACCES: permission denied
+```
+
+**Solución:**
+
+```bash
+# Verificar permisos del vault
+ls -la /ruta/a/tu/vault/
+
+# Arreglar permisos si es necesario
+chmod -R 755 /ruta/a/tu/vault/
+chown -R $(whoami) /ruta/a/tu/vault/
+```
+
+---
+
+## ❌ Problema: npm install falla
+
+```bash
+npm ERR! code EACCES
+npm ERR! syscall access
+```
+
+**Solución:**
+
+```bash
+# No uses sudo con npm. Mejor reconfigurar:
+npm config set prefix ~/.npm-global
+echo 'export PATH="$PATH:~/.npm-global/bin"' >> ~/.zshrc
+source ~/.zshrc
+
+# O usar nvm para gestionar Node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+---
+
+## ❌ Problema: Los prompts no funcionan como esperaba
+
+**Causas posibles:**
+
+1. **El prompt es muy genérico**
+   - Sé más específico en lo que quieres
+   - Agrega ejemplos concretos
+
+2. **Falta contexto**
+   - Asegúrate de que tu vault tenga contenido relevante
+   - Claude necesita datos para conectar ideas
+
+3. **El MCP server no tiene las tools necesarias**
+   ```bash
+   # Verificar qué tools están disponibles
+   claude mcp call obsidian list_tools
+   ```
+
+---
+
+## ❌ Problema: Obsidian no muestra los cambios
+
+Claude creó archivos pero Obsidian no los muestra.
+
+**Solución:**
+
+```bash
+# 1. Verificar que los archivos existen
+ls -la /ruta/a/tu/vault/Inbox/
+
+# 2. Forzar recarga en Obsidian
+#    Cmd/Ctrl + P → "Reload app without saving"
+
+# 3. O desactivar y activar el plugin de sincronización
+#    Configuración → Community plugins → desactivar/activar
+```
+
+---
+
+## ❌ Problema: Backups fallan
+
+**Solución:**
+
+```bash
+# Verificar que la ruta de backup existe
+ls ~/backups/
+
+# Verificar espacio en disco
+df -h ~/
+
+# Probar backup manual para ver errores
+tar -czf "~/backups/test-backup.tar.gz" -C /ruta/al/vault .
+```
+
+---
+
+## 📋 Tabla de errores comunes
+
+| Error | Causa más probable | Solución rápida |
+|---|---|---|
+| `command not found: claude` | No instalado | `npm install -g @anthropic-ai/claude-code` |
+| `ANTHROPIC_API_KEY is not set` | API Key faltante | `export ANTHROPIC_API_KEY="sk-ant-..."` |
+| `Could not connect to MCP server` | Ruta incorrecta | `claude mcp list` |
+| `EACCES: permission denied` | Permisos | `chmod -R 755 /ruta/vault` |
+| `npm ERR!` | Permisos npm | Configurar prefix local |
+| No encuentra notas | Vault vacío o ruta mal | `ls /ruta/vault/*.md` |
+
+---
+
+## 🔍 Diagnóstico rápido
+
+```bash
+# Script de diagnóstico para verificar todo el sistema
+cat << 'SCRIPT'
+echo "🔍 Diagnosticando Digital Brain..."
+echo "━━━━━━━━━━━━━━━━━━━━━━━━"
+
+echo "1. Node.js: $(node --version 2>/dev/null || echo '❌ No encontrado')"
+echo "2. npm: $(npm --version 2>/dev/null || echo '❌ No encontrado')"
+echo "3. Claude CLI: $(claude --version 2>/dev/null || echo '❌ No instalado')"
+echo "4. MCP Server: $(which obsidian-mcp-server 2>/dev/null || echo '❌ No instalado')"
+echo "5. API Key: $(echo ${ANTHROPIC_API_KEY:0:10}...) configurada"
+echo "6. Vault: $(ls /ruta/a/tu/vault/*.md 2>/dev/null | wc -l) notas encontradas"
+SCRIPT
+```
+
+---
+
+## 📞 ¿Sigue sin funcionar?
+
+1. Revisa que seguiste todos los pasos de [`02-instalacion.md`](./02-instalacion.md)
+2. Verifica la configuración en [`03-configuracion.md`](./03-configuracion.md)
+3. Abre un issue en el repositorio con:
+   - Tu sistema operativo
+   - Versiones de Node, npm, Claude
+   - El mensaje de error completo
+
+---
+
+## ➡️ Siguiente paso
+
+⬅️ **Anterior:** [`06-mcp-explicado.md`](./06-mcp-explicado.md) 🔌 · **Siguiente:** [`08-graphify-integracion.md`](./08-graphify-integracion.md) 🧠
+
+---
+
+> 💡 **¿Todo funciona?** Explora los [`prompts/`](../prompts/) y los [`templates/`](../templates/) para sacarle el máximo partido a tu Digital Brain.

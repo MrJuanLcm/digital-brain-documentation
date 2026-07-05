@@ -1,0 +1,38 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Claude
+.claude*
+*.claude-config.json
+
+# Obsidian
+.obsidian/
+*.obsidian
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Build
+dist/
+build/
+*.js.map
+
+# Logs
+*.log
+logs/

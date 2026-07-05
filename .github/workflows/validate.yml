@@ -1,0 +1,42 @@
+name: Validate Documentation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Markdown Lint
+        run: markdownlint '**/*.md' --ignore node_modules --ignore .git
+
+      - name: Verify internal links
+        run: .github/scripts/validate-links.py
+
+      - name: Check file naming conventions
+        run: |
+          # Verificar kebab-case en prompts, templates, config, scripts
+          for dir in prompts templates config scripts; do
+            for file in $(find $dir -name "*.md" -o -name "*.yaml" -o -name "*.js" 2>/dev/null); do
+              basename=$(basename "$file")
+              if echo "$basename" | grep -qE '[A-Z_]'; then
+                echo "⚠️  Naming convention: $file (use kebab-case)"
+                exit 1
+              fi
+            done
+          done
+          echo "✅ All file names use kebab-case"

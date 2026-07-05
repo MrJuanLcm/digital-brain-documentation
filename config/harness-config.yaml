@@ -1,0 +1,53 @@
+# ============================================================
+# ⚙️ Harness Configuration — Digital Brain
+# ============================================================
+# Este archivo configura el Harness que orquesta la
+# comunicación entre Claude CLI y Obsidian vía MCP.
+# ============================================================
+
+# ─── Vault de Obsidian ──────────────────────────────────
+# Ruta absoluta a tu vault de Obsidian
+vault_path: "/Users/tu-usuario/DigitalBrain"
+
+# ─── MCP Server ─────────────────────────────────────────
+# Qué servidor MCP usar para conectar con Obsidian
+# Opciones:
+#   - "@n8n/obsidian-mcp-server"  (npm global)
+#   - "node config/mcp-server.js"  (servidor local)
+mcp_server: "@n8n/obsidian-mcp-server"
+
+# ─── Claude ─────────────────────────────────────────────
+# Modelo de Claude a utilizar
+# claude-sonnet-4-20250514 es el recomendado para tareas de conocimiento
+claude_model: "claude-sonnet-4-20250514"
+
+# Prompt de sistema que carga Claude al iniciar
+system_prompt: |
+  Eres un asistente de gestión de conocimiento personal.
+  Tienes acceso completo al vault de Obsidian del usuario.
+  Tu misión es ayudarle a procesar, organizar y conectar
+  su conocimiento de forma activa.
+
+# ─── Comportamiento ─────────────────────────────────────
+auto_start: true                # Iniciar MCP server automáticamente
+debug: false                    # Modo debug (logs detallados)
+
+# ─── Backup ─────────────────────────────────────────────
+backup:
+  enabled: true
+  interval_hours: 24            # Backup automático cada 24h
+  max_backups: 30               # Mantener últimos 30 backups
+  directory: "~/backups/digital-brain"
+
+# ─── Vault ──────────────────────────────────────────────
+vault:
+  inbox_folder: "Inbox"         # Carpeta para información nueva
+  daily_notes_folder: "Diario"  # Carpeta para notas diarias
+  projects_folder: "Proyectos"  # Carpeta para proyectos
+  references_folder: "Referencias"  # Carpeta para conocimiento permanente
+  mocs_folder: "MOCs"          # Carpeta para Mapas de Contenido
+
+  # Tags automáticos sugeridos al procesar entrada
+  auto_tags:
+    - "procesado"
+    - "digital-brain"

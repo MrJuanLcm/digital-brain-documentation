@@ -1,0 +1,182 @@
+---
+title: "Biblioteca de prompts"
+description: "Todos los prompts organizados por propósito con ejemplos de uso"
+tags: [prompts, guia]
+sidebar_position: 4
+---
+
+# 🤖 Biblioteca de prompts
+
+> Aquí encontrarás todos los prompts organizados por propósito. Cada prompt está diseñado para una tarea específica dentro de tu Digital Brain.
+
+## 📋 Tabla de contenidos
+
+- [📋 Índice de prompts](#-índice-de-prompts)
+- [1️⃣ 📥 Procesar entrada](#1️⃣--procesar-entrada)
+- [2️⃣ 🔄 Sincronizar vault](#2️⃣--sincronizar-vault)
+- [3️⃣ 💡 Generar insights](#3️⃣--generar-insights)
+- [4️⃣ 📅 Revisión diaria](#4️⃣--revisión-diaria)
+- [🎯 Cómo personalizar los prompts](#-cómo-personalizar-los-prompts)
+- [🚀 Tips de uso avanzado](#-tips-de-uso-avanzado)
+
+---
+
+## 📋 Índice de prompts
+
+| # | Prompt | Propósito |
+|---|---|---|
+| 1 | 📥 Procesar entrada | Procesar info nueva y guardarla en el vault |
+| 2 | 🔄 Sincronizar vault | Revisar y reorganizar notas existentes |
+| 3 | 💡 Generar insights | Encontrar conexiones entre notas |
+| 4 | 📅 Revisión diaria | Revisar el progreso y conocimiento diario |
+
+---
+
+## 1️⃣ 📥 Procesar entrada
+
+**Archivo:** [`../prompts/procesar-entrada.md`](../prompts/procesar-entrada.md)
+
+**Cuándo usarlo:** Cuando tienes información nueva (artículo, idea, video, PDF) y quieres que Claude la procese y la guarde en tu vault.
+
+**Uso:**
+```bash
+cat articulo.txt | claude "$(cat prompts/procesar-entrada.md)"
+# O
+claude "$(cat prompts/procesar-entrada.md)" << 'EOF'
+Aquí pego el texto del artículo que quiero procesar...
+EOF
+```
+
+**Qué hace:**
+1. 📖 Lee y comprende la información
+2. 🏷️ Extrae conceptos clave y etiquetas
+3. 📝 Crea una nota estructurada en `Inbox/`
+4. 🔗 Sugiere conexiones con notas existentes
+5. ✅ Confirma lo que se guardó
+
+---
+
+## 2️⃣ 🔄 Sincronizar vault
+
+**Archivo:** [`../prompts/sincronizar-vault.md`](../prompts/sincronizar-vault.md)
+
+**Cuándo usarlo:** Cuando tu vault tiene notas desorganizadas o huérfanas (sin conexiones).
+
+**Uso:**
+```bash
+claude "$(cat prompts/sincronizar-vault.md)"
+```
+
+**Qué hace:**
+1. 🔍 Escanea el vault buscando notas huérfanas
+2. 🏷️ Sugiere tags y categorías
+3. 🔗 Propone conexiones entre notas relacionadas
+4. 📂 Recomienda mover notas a carpetas correctas
+5. 📊 Genera un reporte del estado del vault
+
+---
+
+## 3️⃣ 💡 Generar insights
+
+**Archivo:** [`../prompts/generar-insights.md`](../prompts/generar-insights.md)
+
+**Cuándo usarlo:** Quieres descubrir patrones, conexiones o ideas nuevas que no habías visto antes en tu conocimiento.
+
+**Uso:**
+```bash
+claude "$(cat prompts/generar-insights.md)"
+```
+
+**Qué hace:**
+1. 🧠 Analiza todas tus notas (o un subconjunto)
+2. 🔗 Encuentra patrones y conexiones ocultas
+3. 💡 Genera ideas nuevas basadas en tus notas
+4. 📝 Crea notas de insight en tu vault
+5. 🗺️ Actualiza Mapas de Contenido (MOCs)
+
+---
+
+## 4️⃣ 📅 Revisión diaria
+
+**Archivo:** [`../prompts/revision-diaria.md`](../prompts/revision-diaria.md)
+
+**Cuándo usarlo:** Cada día para cerrar tus notas, revisar lo aprendido y planificar.
+
+**Uso:**
+```bash
+claude "$(cat prompts/revision-diaria.md)"
+```
+
+**Qué hace:**
+1. 📖 Revisa tus notas del día
+2. 📝 Actualiza tu nota diaria con un resumen
+3. 🔗 Conecta los temas del día con conocimiento existente
+4. 🗺️ Actualiza MOCs relevantes
+5. ✅ Limpia el inbox (procesa notas pendientes)
+6. 🎯 Sugiere temas para el día siguiente
+
+---
+
+## 🎯 Cómo personalizar los prompts
+
+Cada prompt está en su propio archivo `.md` dentro de `prompts/`. Puedes editarlos para adaptarlos a tu estilo.
+
+**Ejemplo de personalización:**
+
+```markdown
+<!-- Original -->
+Procesa la siguiente información y guárdala en mi vault.
+
+<!-- Personalizado -->
+Procesa la siguiente información y guárdala en mi vault.
+Usa el formato Zettelkasten: idea principal → contexto → conexiones.
+No uses más de 3 etiquetas por nota.
+```
+
+---
+
+## 🚀 Tips de uso avanzado
+
+### Encadenar prompts
+
+```bash
+# Primero procesas información
+cat paper.txt | claude "$(cat prompts/procesar-entrada.md)"
+
+# Luego generas insights sobre lo procesado
+claude "$(cat prompts/generar-insights.md)"
+
+# Al final del día, revisión
+claude "$(cat prompts/revision-diaria.md)"
+```
+
+### Crear alias en el shell
+
+```bash
+# Agregar a ~/.zshrc o ~/.bashrc
+alias brain-process='claude "$(cat ~/digital-brain/prompts/procesar-entrada.md)"'
+alias brain-review='claude "$(cat ~/digital-brain/prompts/revision-diaria.md)"'
+alias brain-insights='claude "$(cat ~/digital-brain/prompts/generar-insights.md)"'
+alias brain-sync='claude "$(cat ~/digital-brain/prompts/sincronizar-vault.md)"'
+```
+
+### Usar con pipes
+
+```bash
+# Procesar desde el portapapeles (macOS)
+pbpaste | claude "$(cat prompts/procesar-entrada.md)"
+
+# Procesar desde un archivo
+cat mi-nota.md | claude "$(cat prompts/procesar-entrada.md)"
+
+# Combinar herramientas
+pbpaste | claude "$(cat prompts/procesar-entrada.md)" | tee resultado.txt
+```
+
+---
+
+> 💡 **Tip:** Los prompts están diseñados para encadenarse. Usa `procesar-entrada.md` primero, luego `generar-insights.md` sobre lo procesado.
+
+## ➡️ Siguiente paso
+
+⬅️ **Anterior:** [`03-configuracion.md`](./03-configuracion.md) ⚙️ · **Siguiente:** [`05-casos-de-uso.md`](./05-casos-de-uso.md) 🎯
