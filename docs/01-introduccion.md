@@ -29,31 +29,31 @@ Un **Digital Brain** (cerebro digital) es un sistema donde:
 - **MCP** es el puente que comunica a Claude con Obsidian
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                     TU CEREBRO DIGITAL                    │
-│                                                           │
-│   ┌──────────────┐      ┌──────────────┐                 │
-│   │   Claude     │      │   Obsidian   │                 │
-│   │   (Mente)    │◄────►│   (Memoria)  │                 │
-│   └──────────────┘      └──────────────┘                 │
-│          ▲                      ▲                        │
-│          │    ┌──────────┐      │                        │
-│          └────┤ MCP Server│─────┘                        │
-│               │  (Puente)│                              │
-│               └──────────┘                              │
-└─────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│              TU CEREBRO DIGITAL                    │
+│                                                    │
+│   ┌──────────────┐      ┌──────────────┐           │
+│   │   Claude     │      │   Obsidian   │           │
+│   │   (Mente)    │◄────►│   (Memoria)  │           │
+│   └──────────────┘      └──────────────┘           │
+│          ▲                      ▲                  │
+│          │    ┌────────────┐    │                  │
+│          └────┤ MCP Server │────┘                  │
+│               │  (Puente)  │                       │
+│               └────────────┘                       │
+└────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 🤔 ¿Por qué necesitas esto?
 
-| Problema | Solución |
-|---|---|
-| 📚 Tienes mil notas dispersas | Claude las organiza automáticamente |
-| 🔗 No conectas ideas entre temas | Claude encuentra conexiones ocultas |
-| 🕐 Pierdes tiempo buscando info | Claude responde al instante desde tu vault |
-| 💡 Olvidas insights importantes | Claude los extrae y los guarda |
+| Problema                         | Solución                                   |
+| -------------------------------- | ------------------------------------------ |
+| 📚 Tienes mil notas dispersas    | Claude las organiza automáticamente        |
+| 🔗 No conectas ideas entre temas | Claude encuentra conexiones ocultas        |
+| 🕐 Pierdes tiempo buscando info  | Claude responde al instante desde tu vault |
+| 💡 Olvidas insights importantes  | Claude los extrae y los guarda             |
 
 ---
 
@@ -94,6 +94,18 @@ El Harness es el gestor que mantiene todo funcionando:
 - Gestiona las credenciales
 - Asegura que Claude ↔ Obsidian estén siempre conectados
 
+### 🧠 5. Graphify — Grafo de conocimiento automático
+
+Graphify complementa el sistema generando un **grafo de conocimiento persistente** desde todo tu vault:
+
+- Extrae automáticamente entidades y relaciones de tus notas
+- Genera visualizaciones interactivas (`graph.html`)
+- Exporta como vault de Obsidian navegable (`graphify-out/obsidian/`)
+- Crea wiki estática publicable (`wiki/`)
+- Modo `watch` para mantener el grafo sincronizado en tiempo real
+
+> 💡 Ver integración completa en [`08-graphify-integracion.md`](./08-graphify-integracion.md)
+
 ---
 
 ## 🔄 Flujo de trabajo típico
@@ -133,13 +145,13 @@ El Harness es el gestor que mantiene todo funcionando:
 
 ## 🎯 ¿Para quién es esto?
 
-| Perfil | Beneficio |
-|---|---|
-| 🧑‍🎓 **Estudiantes** | Organizar apuntes, conectar temas, preparar exámenes |
-| 👩‍💻 **Desarrolladores** | Documentar proyectos, guardar snippets, aprender nuevas tecnologías |
-| ✍️ **Escritores** | Organizar investigación, conectar personajes/tramas, evitar incoherencias |
-| 🔬 **Investigadores** | Gestionar papers, encontrar relaciones entre estudios |
-| 🧑‍💼 **Profesionales** | Tomar notas de reuniones, conectar proyectos, hacer seguimiento |
+| Perfil                | Beneficio                                                                 |
+| --------------------- | ------------------------------------------------------------------------- |
+| 🧑‍🎓**Estudiantes**     | Organizar apuntes, conectar temas, preparar exámenes                      |
+| 👩‍💻**Desarrolladores** | Documentar proyectos, guardar snippets, aprender nuevas tecnologías       |
+| ✍️**Escritores**      | Organizar investigación, conectar personajes/tramas, evitar incoherencias |
+| 🔬**Investigadores**  | Gestionar papers, encontrar relaciones entre estudios                     |
+| 🧑‍💼**Profesionales**   | Tomar notas de reuniones, conectar proyectos, hacer seguimiento           |
 
 ---
 
@@ -170,10 +182,20 @@ graph TB
         O --> D
     end
     
+    subgraph "🧠 Graphify"
+        O -.->|graphify .| G[Graphify Skill]
+        G -->|Claude Code| KG[Grafo de Conocimiento]
+        KG -->|Exporta| OBS[graphify-out/obsidian/]
+        KG -->|Renderiza| HTML[graph.html]
+        KG -->|Reporte| RPT[GRAPH_REPORT.md]
+    end
+
     style CC fill:#6B46C1,color:#fff
     style MCP fill:#38A169,color:#fff
     style O fill:#E53E3E,color:#fff
     style H fill:#DD6B20,color:#fff
+    style G fill:#065F46,color:#fff
+    style KG fill:#047857,color:#fff
 ```
 
 ---

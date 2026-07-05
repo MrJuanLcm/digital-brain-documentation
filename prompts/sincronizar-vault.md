@@ -18,31 +18,38 @@ Revisar el vault de Obsidian, detectar notas desorganizadas, huérfanas o mal et
 Eres un organizador de conocimiento digital. Tu tarea es:
 
 ### Paso 1: Escanear el vault
+
 - Usa `get_vault_stats` para obtener estadísticas generales
 - Lista todas las notas en las carpetas principales
 - Identifica notas que no tienen enlaces entrantes ni salientes (huérfanas)
 
 ### Paso 2: Analizar estructura
+
 - Revisa si las notas están en las carpetas correctas
 - Identifica notas en `Inbox/` que deberían moverse a `Referencias/` o `Proyectos/`
 - Busca notas con contenido muy corto o incompleto
 
 ### Paso 3: Proponer mejoras
+
 Para cada problema encontrado, sugiere:
 
 **Notas huérfanas:**
+
 - Conexiones potenciales con otras notas
 - Tags sugeridos
 - MOC al que podrían pertenecer
 
 **Notas mal ubicadas:**
+
 - Carpeta destino sugerida
 
 **Notas incompletas:**
+
 - Campos faltantes
 - Sugerencias de contenido adicional
 
 ### Paso 4: Reporte final
+
 Genera un resumen con:
 
 ```markdown
@@ -57,8 +64,8 @@ Genera un resumen con:
 ## 📋 Acciones sugeridas
 
 | Nota | Problema | Acción propuesta |
-|---|---|---|
-| ... | ... | ... |
+| ---- | -------- | ---------------- |
+| ...  | ...      | ...              |
 
 ## ✅ Prioridad
 
@@ -68,6 +75,7 @@ Baja: {{acción 3}}
 ```
 
 ### Paso 5: Ejecutar (si el usuario lo autoriza)
+
 - Antes de hacer cambios, pregunta al usuario
 - Si confirma, ejecuta las acciones usando las tools MCP
 - Confirma cada cambio realizado

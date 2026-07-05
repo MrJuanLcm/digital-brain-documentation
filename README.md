@@ -14,6 +14,8 @@
   ·
   <a href="./docs/02-instalacion.md">📥 Instalación</a>
   ·
+  <a href="./docs/08-graphify-integracion.md">🧠 Graphify</a>
+  ·
   <a href="./docs/cheatsheet.md">📋 Cheatsheet</a>
   ·
   <a href="./docs/glosario.md">📖 Glosario</a>
@@ -64,6 +66,22 @@
 | `config/`    | 🔧 Archivos de configuración de referencia                   |
 | `templates/` | 📝 Plantillas para notas en Obsidian                         |
 | `examples/`  | 🎯 Ejemplos prácticos y vault de demostración                |
+
+---
+
+## 🧠 Graphify — Grafo de conocimiento automatizado
+
+Graphify complementa tu Digital Brain generando un **grafo de conocimiento persistente** desde todo tu vault:
+
+| Comando | Qué hace |
+|---------|----------|
+| `graphify .` | Escanea el vault y genera grafo (entidades + relaciones) |
+| `graphify watch` | Modo vigilancia: actualiza el grafo automáticamente |
+| `graphify status` | Estado del skill y configuración |
+
+**Outputs:** `graph.html` (visual), `graphify-out/obsidian/` (vault navegable), `wiki/` (web estática), `GRAPH_REPORT.md` (reporte).
+
+> 📖 Ver integración completa: [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md)
 
 ---
 

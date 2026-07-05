@@ -20,6 +20,10 @@ sidebar_position: 7
 - [❌ Problema: Los prompts no funcionan](#-problema-los-prompts-no-funcionan-como-esperaba)
 - [❌ Problema: Obsidian no muestra los cambios](#-problema-obsidian-no-muestra-los-cambios)
 - [❌ Problema: Backups fallan](#-problema-backups-fallan)
+- [❌ Problema: Timeouts en MCP Server](#-problema-timeouts-en-mcp-server)
+- [❌ Problema: Rutas con espacios en Windows](#-problema-rutas-con-espacios-en-windows)
+- [❌ Problema: Vault muy grande (rendimiento)](#-problema-vault-muy-grande-rendimiento)
+- [❌ Problema: Conflictos de plugins en Obsidian](#-problema-conflictos-de-plugins-en-obsidian)
 - [🔍 Diagnóstico rápido](#-diagnóstico-rápido)
 
 ---
@@ -228,6 +232,116 @@ df -h ~/
 
 # Probar backup manual para ver errores
 tar -czf "~/backups/test-backup.tar.gz" -C /ruta/al/vault .
+```
+
+---
+
+## ❌ Problema: Timeouts en MCP Server
+
+Claude responde lento o devuelve timeout al consultar el vault.
+
+```bash
+Claude responde: "The request timed out" o tarda >30s en responder
+```
+
+**Causas y soluciones:**
+
+| Causa | Solución |
+|-------|----------|
+| Vault muy grande (>5000 notas) | Aumentar timeout: `claude mcp call obsidian list_notes limit=10` |
+| Obsidian-mcp-server antiguo | Actualizar: `npm update -g @n8n/obsidian-mcp-server` |
+| Índice de búsqueda corrupto | Borrar `~/.cache/obsidian-mcp-server/` y reiniciar |
+| Muchas llamadas concurrentes | Usar `limit` en las queries, evitar `list_notes` sin filtro |
+
+**Configuración de timeout:**
+
+```yaml
+# En ~/.digital-brain/config.yaml
+mcp_timeout_seconds: 60
+max_notes_per_query: 50
+```
+
+---
+
+## ❌ Problema: Rutas con espacios en Windows
+
+En Windows/WSL2, rutas con espacios rompen comandos.
+
+```bash
+# ❌ Mal - falla por espacios
+claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault "C:\Users\Mi Usuario\Documents\Mi Vault"
+
+# ✅ Bien - comillas dobles escapadas o ruta sin espacios
+claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault "C:\\Users\\Mi Usuario\\Documents\\Mi Vault"
+```
+
+**Solución recomendada:** Usar ruta sin espacios o vincular:
+
+```cmd
+# Crear junction sin espacios
+mklink /J C:\DigitalBrain "C:\Users\Mi Usuario\Documents\Mi Vault"
+
+# Usar C:\DigitalBrain en la configuración
+```
+
+**WSL2:** Montar unidad de Windows:
+
+```bash
+# En .zshrc / .bashrc
+export OBSIDIAN_VAULT_PATH="/mnt/c/Users/Mi Usuario/Documents/Mi Vault"
+
+# O crear symlink
+ln -s "/mnt/c/Users/Mi Usuario/Documents/Mi Vault" ~/vault
+export OBSIDIAN_VAULT_PATH=~/vault
+```
+
+---
+
+## ❌ Problema: Vault muy grande (rendimiento)
+
+Síntomas: búsquedas lentas, timeouts, alto uso de CPU/memoria.
+
+**Soluciones:**
+
+```bash
+# 1. Limitar resultados en consultas
+claude mcp call obsidian search_notes query="tema" limit=20
+
+# 2. Excluir carpetas pesadas en config
+# ~/.digital-brain/config.yaml
+exclude_patterns:
+  - ".git/**"
+  - "node_modules/**"
+  - ".obsidian/**"
+  - "*.png"
+  - "*.pdf"
+
+# 3. Usar MOCs (Maps of Content) como índices
+# En lugar de buscar en todo, busca en MOCs específicos
+
+# 4. Archivar proyectos antiguos
+mv Proyectos/antiguo/ Archive/
+```
+
+---
+
+## ❌ Problema: Conflictos de plugins en Obsidian
+
+Plugins que interfieren con MCP o archivos:
+
+| Plugin | Conflicto | Solución |
+|--------|-----------|----------|
+| **Live Preview** | Bloquea archivos | Desactivar en notas activas |
+| **Sync (oficial)** | Conflictos de lock | Pausar sync durante operaciones MCP |
+| **Git** | Commits automáticos | Configurar `.gitignore` para `.obsidian/` |
+| **Dataview** | Índices pesados | Limitar queries en vaults grandes |
+
+**Diagnóstico:**
+
+```bash
+# Desactivar todos los plugins community
+# Configuración → Community plugins → Desactivar todos
+# Probar MCP, luego activar uno a uno
 ```
 
 ---

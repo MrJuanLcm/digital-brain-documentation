@@ -35,10 +35,10 @@ Sin MCP:                         Con MCP:
 └──────────┘                    └──────────┘    └────┬─────┘
                                                      │
                                              ┌───────┴───────┐
-                                             │  Obsidian      │
-                                             │  Filesystem    │
-                                             │  Web           │
-                                             │  Database      │
+                                             │  Obsidian     │
+                                             │  Filesystem   │
+                                             │  Web          │
+                                             │  Database     │
                                              └───────────────┘
 ```
 
@@ -47,17 +47,17 @@ Sin MCP:                         Con MCP:
 ## 🏗️ Arquitectura de MCP
 
 ```
-┌─────────────────────────────────────────────────────┐
+┌───────────────────────────────────────────────────────┐
 │                    MCP Architecture                   │
 │                                                       │
-│  ┌──────────────────┐                                │
-│  │   MCP Host        │                                │
-│  │  (Claude CLI)     │                                │
-│  │                   │                                │
-│  │  ┌─────────────┐  │                                │
-│  │  │ MCP Client  │─┼──────┐                         │
-│  │  └─────────────┘  │      │                         │
-│  └──────────────────┘      │                         │
+│  ┌──────────────────┐                                 │
+│  │   MCP Host       │                                 │
+│  │  (Claude CLI)    │                                 │
+│  │                  │                                 │
+│  │  ┌─────────────┐ │                                 │
+│  │  │ MCP Client  │─┼───────┐                         │
+│  │  └─────────────┘ │       │                         │
+│  └──────────────────┘       │                         │
 │                             ▼                         │
 │                    ┌──────────────────┐               │
 │                    │   MCP Server     │               │
@@ -69,7 +69,7 @@ Sin MCP:                         Con MCP:
 │                    │  │ Prompts    │  │               │
 │                    │  └────────────┘  │               │
 │                    └──────────────────┘               │
-└─────────────────────────────────────────────────────┘
+└───────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -87,6 +87,7 @@ El programa que **inicia la conexión**. En nuestro caso es **Claude CLI**.
 ### 2. 📡 MCP Client
 
 Vive dentro del Host. Es quien:
+
 - Establece la conexión con el servidor
 - Envía las peticiones (lista notas, lee nota, escribe nota)
 - Recibe las respuestas
@@ -98,7 +99,9 @@ El programa que **expone recursos y herramientas**. En nuestro caso es el servid
 Proporciona tres tipos de capacidades:
 
 #### 📄 Resources (Recursos)
+
 Datos que Claude puede **leer**. Ejemplos:
+
 - Contenido de una nota
 - Lista de archivos en una carpeta
 - Metadatos de notas
@@ -110,7 +113,9 @@ GET resource://obsidian/notas/mi-nota.md
 ```
 
 #### 🛠️ Tools (Herramientas)
+
 Acciones que Claude puede **ejecutar**. Ejemplos:
+
 - Crear una nueva nota
 - Buscar texto en el vault
 - Mover archivos
@@ -123,6 +128,7 @@ CALL tool://obsidian/create_note
 ```
 
 #### 📝 Prompts (Plantillas)
+
 Plantillas de prompts reutilizables que el servidor ofrece al modelo.
 
 ---
@@ -159,15 +165,15 @@ Plantillas de prompts reutilizables que el servidor ofrece al modelo.
 
 Cuando instalas el `obsidian-mcp-server`, Claude puede usar estas herramientas:
 
-| Herramienta | Descripción | Ejemplo |
-|---|---|---|
-| `list_notes` | Lista notas en una carpeta | `list_notes(path="Inbox/")` |
-| `read_note` | Lee el contenido de una nota | `read_note(path="mi-nota.md")` |
-| `create_note` | Crea una nueva nota | `create_note(title="Insight", content="...")` |
-| `update_note` | Actualiza una nota existente | `update_note(path="...", content="...")` |
-| `delete_note` | Elimina una nota | `delete_note(path="...")` |
-| `search_notes` | Busca texto en el vault | `search_notes(query="machine learning")` |
-| `get_vault_stats` | Estadísticas del vault | `get_vault_stats()` |
+| Herramienta       | Descripción                  | Ejemplo                                       |
+| ----------------- | ---------------------------- | --------------------------------------------- |
+| `list_notes`      | Lista notas en una carpeta   | `list_notes(path="Inbox/")`                   |
+| `read_note`       | Lee el contenido de una nota | `read_note(path="mi-nota.md")`                |
+| `create_note`     | Crea una nueva nota          | `create_note(title="Insight", content="...")` |
+| `update_note`     | Actualiza una nota existente | `update_note(path="...", content="...")`      |
+| `delete_note`     | Elimina una nota             | `delete_note(path="...")`                     |
+| `search_notes`    | Busca texto en el vault      | `search_notes(query="machine learning")`      |
+| `get_vault_stats` | Estadísticas del vault       | `get_vault_stats()`                           |
 
 ---
 
@@ -175,20 +181,20 @@ Cuando instalas el `obsidian-mcp-server`, Claude puede usar estas herramientas:
 
 ```
   Tú: "Claude, guarda esta idea sobre blockchain en mi vault"
-  
-  ┌── Claude recibe el mensaje ──────────────────────────┐
+
+  ┌── Claude recibe el mensaje ───────────────────────────┐
   │                                                       │
-  │  1. Claude decide: "Necesito guardar esto en         │
+  │  1. Claude decide: "Necesito guardar esto en          │
   │     Obsidian"                                         │
   │                                                       │
   │  2. Claude llama a la herramienta create_note:        │
   │     → MCP Client envía:                               │
   │       POST /tools/create_note                         │
   │       { "title": "Blockchain idea",                   │
-  │         "content": "# Blockchain\nIdea sobre...",      │
+  │         "content": "# Blockchain\nIdea sobre...",     │
   │         "folder": "Inbox" }                           │
   │                                                       │
-  │  3. MCP Server recibe → la procesa →                 │
+  │  3. MCP Server recibe → la procesa →                  │
   │     crea el archivo en Obsidian                       │
   │                                                       │
   │  4. MCP Server responde:                              │
@@ -203,13 +209,13 @@ Cuando instalas el `obsidian-mcp-server`, Claude puede usar estas herramientas:
 
 ## 🔗 MCP vs APIs tradicionales
 
-| Aspecto | MCP | API tradicional |
-|---|---|---|
-| 🔌 Conexión | Protocolo estándar | Cada API es diferente |
-| 🎯 Propósito | IA primero | Humano primero |
-| 📦 Descubrimiento | El servidor anuncia sus tools | Documentación externa |
-| 🔄 Estado | Sesión persistente | Sin estado |
-| 🛠️ Tools dinámicas | Se registran al conectar | Endpoints fijos |
+| Aspecto            | MCP                           | API tradicional       |
+| ------------------ | ----------------------------- | --------------------- |
+| 🔌 Conexión        | Protocolo estándar            | Cada API es diferente |
+| 🎯 Propósito       | IA primero                    | Humano primero        |
+| 📦 Descubrimiento  | El servidor anuncia sus tools | Documentación externa |
+| 🔄 Estado          | Sesión persistente            | Sin estado            |
+| 🛠️ Tools dinámicas | Se registran al conectar      | Endpoints fijos       |
 
 ---
 
@@ -222,27 +228,27 @@ sequenceDiagram
     participant MCP as 🔌 MCP Client
     participant Server as 🗄️ MCP Server
     participant Obsidian as 📓 Obsidian Vault
-    
+
     User->>Claude: "Procesa esto y guárdalo"
     Claude->>MCP: init_connection()
     MCP->>Server: connect(obsidian-mcp-server)
     Server->>MCP: capabilities{resources, tools}
     MCP->>Claude: ready
-    
+
     Claude->>MCP: search_notes("tema relacionado")
     MCP->>Server: tool_call(search_notes, query)
     Server->>Obsidian: Buscar en vault
     Obsidian-->>Server: Resultados
     Server-->>MCP: notas_relacionadas[]
     MCP-->>Claude: Resultados
-    
+
     Claude->>MCP: create_note(titulo, contenido, folder)
     MCP->>Server: tool_call(create_note, params)
     Server->>Obsidian: Crear archivo .md
     Obsidian-->>Server: path
     Server-->>MCP: success
     MCP-->>Claude: confirmación
-    
+
     Claude->>User: "✅ Listo. Nota guardada y conectada"
 ```
 
@@ -252,15 +258,15 @@ sequenceDiagram
 
 Además de Obsidian, MCP puede conectar Claude con:
 
-| Herramienta | Para qué |
-|---|---|
-| 📁 **Filesystem** | Leer/escribir archivos locales |
-| 🌐 **Web** | Buscar en internet, hacer scraping |
-| 🗄️ **Base de datos** | Consultar SQL directamente |
-| 📊 **Google Sheets** | Leer y escribir en spreadsheets |
-| 🐙 **GitHub** | Gestionar repos, issues, PRs |
-| 📧 **Email** | Leer y enviar correos |
-| 🎨 **Figma** | Obtener información de diseños |
+| Herramienta         | Para qué                           |
+| ------------------- | ---------------------------------- |
+| 📁**Filesystem**    | Leer/escribir archivos locales     |
+| 🌐**Web**           | Buscar en internet, hacer scraping |
+| 🗄️**Base de datos** | Consultar SQL directamente         |
+| 📊**Google Sheets** | Leer y escribir en spreadsheets    |
+| 🐙**GitHub**        | Gestionar repos, issues, PRs       |
+| 📧**Email**         | Leer y enviar correos              |
+| 🎨**Figma**         | Obtener información de diseños     |
 
 ---
 

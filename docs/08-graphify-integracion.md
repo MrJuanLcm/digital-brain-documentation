@@ -28,18 +28,18 @@ sidebar_position: 8
 
 ```
 Sin Graphify:                       Con Graphify:
-┌──────────────────┐               ┌──────────────────┐
+┌───────────────────┐               ┌───────────────────┐
 │  Archivos sueltos │               │    Grafo vivo     │
-│                  │               │                  │
-│  📄 Código       │               │   Código ───► Doc │
-│  📄 Docs         │               │      │           │
-│  📄 Imágenes     │    Graphify   │      ▼           │
-│  📄 SQL          │ ────────────► │    Imagen ─► SQL  │
-│  📄 Notas        │               │      │           │
-│  ...             │               │      ▼           │
-│  (aislados)      │               │    Notas ──► ...  │
-└──────────────────┘               │  (todo conectado) │
-                                    └──────────────────┘
+│                   │               │                   │
+│  📄 Código        │               │   Código ───► Doc │
+│  📄 Docs          │               │      │            │
+│  📄 Imágenes      │    Graphify   │      ▼            │
+│  📄 SQL           │ ────────────► │    Imagen ─► SQL  │
+│  📄 Notas         │               │      │            │
+│  ...              │               │      ▼            │
+│  (aislados)       │               │    Notas ──► ...  │
+└───────────────────┘               │  (todo conectado) │
+                                    └───────────────────┘
 ```
 
 Procesa el contenido con Claude, extrae entidades y relaciones, y genera un grafo que puedes explorar en HTML, Obsidian o Wikipedia-like wiki.
@@ -73,13 +73,13 @@ graphify status
 
 ## 🚀 Comandos básicos
 
-| Comando | Descripción |
-|---|---|
-| `graphify .` | Escanea la carpeta actual y genera el grafo de conocimiento |
-| `graphify watch` | Modo vigilancia: regenera el grafo automáticamente al detectar cambios |
-| `graphify status` | Muestra el estado del skill y la configuración actual |
-| `graphify install` | Instala el skill en Claude Code |
-| `graphify --help` | Muestra ayuda completa de todos los comandos |
+| Comando            | Descripción                                                            |
+| ------------------ | ---------------------------------------------------------------------- |
+| `graphify .`       | Escanea la carpeta actual y genera el grafo de conocimiento            |
+| `graphify watch`   | Modo vigilancia: regenera el grafo automáticamente al detectar cambios |
+| `graphify status`  | Muestra el estado del skill y la configuración actual                  |
+| `graphify install` | Instala el skill en Claude Code                                        |
+| `graphify --help`  | Muestra ayuda completa de todos los comandos                           |
 
 ### Uso típico
 
@@ -114,13 +114,13 @@ graphify-out/
 
 ### ¿Para qué sirve cada uno?
 
-| Output | Utilidad |
-|---|---|
-| `graph.html` | Explorar visualmente el grafo en el navegador |
-| `graph.json` | Alimentar otras herramientas o análisis programáticos |
-| `GRAPH_REPORT.md` | Leer un resumen rápido del grafo |
-| `obsidian/` | Abrirlo como vault de Obsidian independiente para navegar entidades |
-| `wiki/` | Publicar como wiki estática (GitHub Pages, etc.) |
+| Output            | Utilidad                                                            |
+| ----------------- | ------------------------------------------------------------------- |
+| `graph.html`      | Explorar visualmente el grafo en el navegador                       |
+| `graph.json`      | Alimentar otras herramientas o análisis programáticos               |
+| `GRAPH_REPORT.md` | Leer un resumen rápido del grafo                                    |
+| `obsidian/`       | Abrirlo como vault de Obsidian independiente para navegar entidades |
+| `wiki/`           | Publicar como wiki estática (GitHub Pages, etc.)                    |
 
 ---
 
@@ -141,26 +141,62 @@ Digital Brain                          Graphify
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    FLUJO INTEGRADO                            │
-│                                                               │
-│  ①  Trabajas normalmente en tu vault de Obsidian              │
-│                                                               │
-│  ②  Cuando quieras ver el panorama completo:                  │
-│      ─────────────────────────────                             │
-│      cd /ruta/a/tu/vault                                      │
-│      graphify .                                               │
-│                                                               │
-│  ③  Graphify genera el grafo en graphify-out/                 │
-│                                                               │
-│  ④  Abres graphify-out/obsidian/ como vault secundario        │
-│      en Obsidian (o usas graph.html en el navegador)          │
-│                                                               │
-│  ⑤  Usas el prompt graphify-insights para que Claude          │
-│      analice el grafo y encuentre conexiones nuevas           │
-│                                                               │
-│  ⑥  Las conexiones descubiertas las integras de vuelta        │
-│      a tu vault principal                                     │
+│                    FLUJO INTEGRADO                          │
+│                                                             │
+│  ①  Trabajas normalmente en tu vault de Obsidian           │
+│                                                             │
+│  ②  Cuando quieras ver el panorama completo:               │
+│      ─────────────────────────────                          │
+│      cd /ruta/a/tu/vault                                    │
+│      graphify .                                             │
+│                                                             │
+│  ③  Graphify genera el grafo en graphify-out/              │
+│                                                             │
+│  ④  Abres graphify-out/obsidian/ como vault secundario     │
+│      en Obsidian (o usas graph.html en el navegador)        │
+│                                                             │
+│  ⑤  Usas el prompt graphify-insights para que Claude       │
+│      analice el grafo y encuentre conexiones nuevas         │
+│                                                             │
+│  ⑥  Las conexiones descubiertas las integras de vuelta     │
+│      a tu vault principal                                   │
 └─────────────────────────────────────────────────────────────┘
+```
+
+### Diagrama visual del flujo integrado
+
+```mermaid
+flowchart TD
+    subgraph DB["📓 Digital Brain (tu flujo diario)"]
+        A["📥 Captura info nueva\n(artículo, idea, código)"] --> B["🤖 Procesar con prompt\nprocesar-entrada.md"]
+        B --> C["💾 Guarda en Inbox/\nvía MCP Server"]
+        C --> D["🔗 Conecta con notas\nexistentes"]
+        D --> E["📅 Revisión diaria\nprompt revision-diaria.md"]
+    end
+
+    subgraph GF["🧠 Graphify (análisis profundo)"]
+        F["📁 graphify .\nescanea todo el vault"] --> G["🧠 Claude Code analiza\narchivos y extrae entidades"]
+        G --> H["🕸️ Construye grafo:\nentidades + relaciones"]
+        H --> I["📦 Exporta:\ngraph.html, obsidian/, wiki/"]
+    end
+
+    subgraph INT["🔗 Integración"]
+        J["📊 Abre graphify-out/obsidian/\ncomo vault secundario"]
+        K["💡 Usa prompt graphify-insights.md\npara analizar el grafo"]
+        L["✨ Descubre conexiones\nnuevas ocultas"]
+        M["➡️ Integra hallazgos\na vault principal"]
+    end
+
+    E -.->|Periódicamente| F
+    I --> J
+    J --> K
+    K --> L
+    L --> M
+    M -.->|Nuevas conexiones| C
+
+    style DB fill:#1E3A8A,stroke:#3B82F6,color:#fff
+    style GF fill:#065F46,stroke:#10B981,color:#fff
+    style INT fill:#7C2D12,stroke:#EA580C,color:#fff
 ```
 
 ### Uso con el prompt de insights
@@ -210,15 +246,15 @@ graph TB
 
 ## ⚖️ Digital Brain sin Graphify vs con Graphify
 
-| Aspecto | Sin Graphify | Con Graphify |
-|---|---|---|
-| 🔗 Conexiones | Manuales (links en notas, MOCs) | Automáticas (entidades + relaciones extraídas) |
-| 📊 Visibilidad | Vista parcial por nota | Mapa completo del conocimiento |
-| 🏗️ Estructura | Tesauro + MOCs + tags | Grafo navegable + entidades + relaciones |
-| 🔄 Actualización | Cuando ejecutas un prompt | Automática con `graphify watch` |
-| 📦 Contexto | El que quepa en la ventana de Claude | Grafo comprimido (71.5x menos tokens) |
-| 🌐 Formatos | Solo .md en Obsidian | HTML, Obsidian, Wiki, JSON |
-| 🎯 Para qué sirve | Procesar información nueva día a día | Ver el panorama completo del proyecto |
+| Aspecto           | Sin Graphify                         | Con Graphify                                   |
+| ----------------- | ------------------------------------ | ---------------------------------------------- |
+| 🔗 Conexiones     | Manuales (links en notas, MOCs)      | Automáticas (entidades + relaciones extraídas) |
+| 📊 Visibilidad    | Vista parcial por nota               | Mapa completo del conocimiento                 |
+| 🏗️ Estructura     | Tesauro + MOCs + tags                | Grafo navegable + entidades + relaciones       |
+| 🔄 Actualización  | Cuando ejecutas un prompt            | Automática con`graphify watch`                 |
+| 📦 Contexto       | El que quepa en la ventana de Claude | Grafo comprimido (71.5x menos tokens)          |
+| 🌐 Formatos       | Solo .md en Obsidian                 | HTML, Obsidian, Wiki, JSON                     |
+| 🎯 Para qué sirve | Procesar información nueva día a día | Ver el panorama completo del proyecto          |
 
 ---
 

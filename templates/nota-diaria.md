@@ -9,23 +9,23 @@ type: diario
 
 ## 📥 Procesado hoy
 
-- 
+-
 
 ## 📝 Notas del día
 
-- 
+-
 
 ## 💡 Insights
 
-- 
+-
 
 ## 🔗 Conexiones nuevas
 
-- 
+-
 
 ## 🎯 Pendiente
 
-- [ ] 
+- [ ]
 
 ## 📊 Progreso
 
