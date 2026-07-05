@@ -24,7 +24,7 @@ sidebar_position: 8
 
 ## 🤔 ¿Qué es Graphify?
 
-**Graphify** es un skill para Claude Code (la versión agente de Claude CLI) que construye automáticamente un **grafo de conocimiento** a partir del contenido de una carpeta.
+**Graphify** es un skill para Claude Code (la versión agente de Claude Code) que construye automáticamente un **grafo de conocimiento** a partir del contenido de una carpeta.
 
 ```
 Sin Graphify:                       Con Graphify:
@@ -131,7 +131,7 @@ Graphify y el Digital Brain son **complementarios**, no excluyentes:
 ```
 Digital Brain                          Graphify
 ─────────────────                      ─────────
-🧠 Claude CLI + MCP                    🤖 Claude Code + Skill
+🧠 Claude Code + MCP                    🤖 Claude Code + Skill
 📓 Obsidian (tu vault principal)       📊 Grafo de conocimiento
 🔗 Conexiones manuales + MOC          🔗 Conexiones automáticas
 📝 Notas procesadas por prompts        🏗️ Grafo generado desde archivos
@@ -217,7 +217,7 @@ claude "$(cat prompts/graphify-insights.md)"
 ```mermaid
 graph TB
     subgraph "📓 Digital Brain"
-        O[Obsidian Vault] -->|MCP| CC[Claude CLI]
+        O[Obsidian Vault] -->|MCP| CC[Claude Code]
         CC -->|Procesa| P[Prompts]
         P -->|Escribe| O
     end

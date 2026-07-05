@@ -1,12 +1,12 @@
 ---
 title: "Prompts — README"
-description: "Índice de la biblioteca de prompts para Claude CLI"
+description: "Índice de la biblioteca de prompts para Claude Code"
 tags: [prompts, indice]
 ---
 
 # 🤖 Biblioteca de prompts para Digital Brain
 
-Aquí encontrarás prompts listos para usar con Claude CLI.
+Aquí encontrarás prompts listos para usar con Claude Code.
 Cada prompt está diseñado para una tarea específica dentro de tu sistema de conocimiento.
 
 ---

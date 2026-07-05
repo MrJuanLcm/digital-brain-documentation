@@ -14,13 +14,13 @@ sidebar_position: 9
 ## A
 
 ### API Key
-Clave de autenticación para usar la API de Anthropic. Permite que Claude CLI se comunique con los modelos de lenguaje de Anthropic. Se configura via variable de entorno `ANTHROPIC_API_KEY`.
+Clave de autenticación para usar la API de Anthropic. Permite que Claude Code se comunique con los modelos de lenguaje de Anthropic. Se configura via variable de entorno `ANTHROPIC_API_KEY`.
 
 ---
 
 ## C
 
-### Claude CLI
+### Claude Code
 Interfaz de línea de comandos de Anthropic para interactuar con Claude. Permite ejecutar prompts, procesar archivos y conectarse con MCP servers.
 
 ### Callout
@@ -34,7 +34,7 @@ Elemento visual en Markdown para destacar información importante (tips, adverte
 Plugin de Obsidian que permite consultar y filtrar notas usando una sintaxis similar a SQL. Útil para crear índices dinámicos y dashboards.
 
 ### Digital Brain (Cerebro Digital)
-Sistema que combina Obsidian (almacenamiento), Claude CLI (procesamiento) y MCP (conexión) para gestionar conocimiento personal de forma automatizada.
+Sistema que combina Obsidian (almacenamiento), Claude Code (procesamiento) y MCP (conexión) para gestionar conocimiento personal de forma automatizada.
 
 ---
 
@@ -48,7 +48,7 @@ Skill para Claude Code que construye automáticamente un grafo de conocimiento a
 ## H
 
 ### Harness
-Capa de orquestación que configura, inicia y gestiona la comunicación entre Claude CLI y el MCP Server. Mantiene las rutas, credenciales y procesos necesarios para que el sistema funcione.
+Capa de orquestación que configura, inicia y gestiona la comunicación entre Claude Code y el MCP Server. Mantiene las rutas, credenciales y procesos necesarios para que el sistema funcione.
 
 ---
 
@@ -68,7 +68,7 @@ Protocolo abierto creado por Anthropic que permite conectar modelos de lenguaje 
 Componente que vive dentro del MCP Host. Establece la conexión con el servidor, envía peticiones y recibe respuestas.
 
 ### MCP Host
-Programa que inicia la conexión MCP. En el Digital Brain, es Claude CLI. Contiene el MCP Client y gestiona múltiples MCP Servers.
+Programa que inicia la conexión MCP. En el Digital Brain, es Claude Code. Contiene el MCP Client y gestiona múltiples MCP Servers.
 
 ### MCP Server
 Programa que expone recursos y herramientas para que el modelo de lenguaje las use. En nuestro caso, el servidor que conecta con Obsidian.

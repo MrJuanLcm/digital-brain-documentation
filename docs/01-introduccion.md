@@ -25,7 +25,7 @@ sidebar_position: 1
 Un **Digital Brain** (cerebro digital) es un sistema donde:
 
 - **Obsidian** almacena todo tu conocimiento como notas conectadas
-- **Claude CLI** actúa como tu asistente de IA para procesar información
+- **Claude Code** actúa como tu asistente de IA para procesar información
 - **MCP** es el puente que comunica a Claude con Obsidian
 
 ```
@@ -68,9 +68,9 @@ Obsidian es una aplicación de notas que trabaja con archivos Markdown locales. 
 - ✅ Tiene miles de plugins
 - ✅ Es rápida y liviana
 
-### 🤖 2. Claude CLI — Tu mente aumentada
+### 🤖 2. Claude Code — Tu mente aumentada
 
-Claude CLI es la interfaz de línea de comandos de Claude (Anthropic). Con ella puedes:
+Claude Code es la interfaz de línea de comandos de Claude (Anthropic). Con ella puedes:
 
 - ✅ Procesar grandes cantidades de texto
 - ✅ Analizar y resumir información
@@ -160,7 +160,7 @@ Graphify complementa el sistema generando un **grafo de conocimiento persistente
 ```mermaid
 graph TB
     subgraph "🧠 Digital Brain"
-        U[👤 Usuario] -->|Prompts| CC[💬 Claude CLI]
+        U[👤 Usuario] -->|Prompts| CC[💬 Claude Code]
         CC -->|Lee/Escribe| MCP[MCP Server<br/>obsidian-mcp-server]
         MCP -->|CRUD Notas| O[📓 Obsidian Vault]
         

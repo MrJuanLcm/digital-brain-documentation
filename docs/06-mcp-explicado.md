@@ -52,7 +52,7 @@ Sin MCP:                         Con MCP:
 │                                                       │
 │  ┌──────────────────┐                                 │
 │  │   MCP Host       │                                 │
-│  │  (Claude CLI)    │                                 │
+│  │  (Claude Code)    │                                 │
 │  │                  │                                 │
 │  │  ┌─────────────┐ │                                 │
 │  │  │ MCP Client  │─┼───────┐                         │
@@ -78,7 +78,7 @@ Sin MCP:                         Con MCP:
 
 ### 1. 🖥️ MCP Host
 
-El programa que **inicia la conexión**. En nuestro caso es **Claude CLI**.
+El programa que **inicia la conexión**. En nuestro caso es **Claude Code**.
 
 - Es quien tiene la sesión del modelo de lenguaje
 - Contiene un MCP Client interno
@@ -224,7 +224,7 @@ Cuando instalas el `obsidian-mcp-server`, Claude puede usar estas herramientas:
 ```mermaid
 sequenceDiagram
     participant User as 👤 Tú
-    participant Claude as 💬 Claude CLI
+    participant Claude as 💬 Claude Code
     participant MCP as 🔌 MCP Client
     participant Server as 🗄️ MCP Server
     participant Obsidian as 📓 Obsidian Vault

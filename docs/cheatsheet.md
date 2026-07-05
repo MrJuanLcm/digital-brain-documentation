@@ -14,7 +14,7 @@ sidebar_position: 10
 ## 🚀 Instalación
 
 ```bash
-npm install -g @anthropic-ai/claude-code           # Claude CLI
+npm install -g @anthropic-ai/claude-code           # Claude Code
 npm install -g @n8n/obsidian-mcp-server            # MCP Server
 export ANTHROPIC_API_KEY="sk-ant-..."              # API Key
 ```

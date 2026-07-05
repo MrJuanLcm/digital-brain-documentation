@@ -6,7 +6,7 @@
 </p>
 
 <h1 align="center">🧠 Digital Brain</h1>
-<p align="center"><strong>Obsidian + Claude CLI + MCP</strong></p>
+<p align="center"><strong>Graphify + Obsidian + Claude Code + MCP</strong></p>
 <p align="center">Tu cerebro digital que se alimenta solo — conecta tu conocimiento con inteligencia artificial.</p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 
 ## 🤔 ¿Qué es esto?
 
-**Digital Brain** es un sistema que convierte **Obsidian** en el centro de tu conocimiento personal, usando **Claude CLI** como asistente de IA y **MCP (Model Context Protocol)** como puente de comunicación.
+**Digital Brain** es un sistema que convierte **Obsidian** en el centro de tu conocimiento personal, usando **Claude Code** como asistente de IA y **MCP (Model Context Protocol)** como puente de comunicación.
 
 ```
        👤 Tú
@@ -73,11 +73,11 @@
 
 Graphify complementa tu Digital Brain generando un **grafo de conocimiento persistente** desde todo tu vault:
 
-| Comando | Qué hace |
-|---------|----------|
-| `graphify .` | Escanea el vault y genera grafo (entidades + relaciones) |
-| `graphify watch` | Modo vigilancia: actualiza el grafo automáticamente |
-| `graphify status` | Estado del skill y configuración |
+| Comando           | Qué hace                                                 |
+| ----------------- | -------------------------------------------------------- |
+| `graphify .`      | Escanea el vault y genera grafo (entidades + relaciones) |
+| `graphify watch`  | Modo vigilancia: actualiza el grafo automáticamente      |
+| `graphify status` | Estado del skill y configuración                         |
 
 **Outputs:** `graph.html` (visual), `graphify-out/obsidian/` (vault navegable), `wiki/` (web estática), `GRAPH_REPORT.md` (reporte).
 

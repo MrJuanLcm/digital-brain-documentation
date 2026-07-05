@@ -1,6 +1,6 @@
 # 🧠 Iniciar el Digital Brain
 
-> **Propósito:** Explica cómo iniciar el MCP Server y conectar Claude CLI con Obsidian.
+> **Propósito:** Explica cómo iniciar el MCP Server y conectar Claude Code con Obsidian.
 >
 > 📖 La configuración detallada está en [`docs/03-configuracion.md`](../docs/03-configuracion.md).
 

@@ -76,7 +76,7 @@ Si usas Claude Desktop, agrega esto a `claude_desktop_config.json`:
 }
 ```
 
-### 2.3 Configurar en Claude CLI
+### 2.3 Configurar en Claude Code
 
 ```bash
 # Agregar el MCP server

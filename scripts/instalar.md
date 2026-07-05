@@ -11,7 +11,7 @@
 | Herramienta | Propósito | Instalación |
 |---|---|---|
 | **Node.js v20+** | Entorno de ejecución | `brew install node@20` (macOS) o `apt install nodejs` (Linux) |
-| **Claude CLI** | Interfaz de IA | `npm install -g @anthropic-ai/claude-code` |
+| **Claude Code** | Interfaz de IA | `npm install -g @anthropic-ai/claude-code` |
 | **MCP Server** | Conexión con Obsidian | `npm install -g @n8n/obsidian-mcp-server` |
 
 ---

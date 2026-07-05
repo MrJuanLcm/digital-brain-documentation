@@ -1,6 +1,6 @@
 ---
 title: "Instalación"
-description: "Guía paso a paso para instalar Node.js, Obsidian, Claude CLI y el MCP Server"
+description: "Guía paso a paso para instalar Node.js, Obsidian, Claude Code y el MCP Server"
 tags: [instalacion, setup]
 sidebar_position: 2
 ---
@@ -13,7 +13,7 @@ sidebar_position: 2
 
 - [📋 Prerequisitos](#-prerequisitos)
 - [🪜 Paso 1: Instalar Obsidian](#-paso-1-instalar-obsidian)
-- [🪜 Paso 2: Instalar Claude CLI](#-paso-2-instalar-claude-cli)
+- [🪜 Paso 2: Instalar Claude Code](#-paso-2-instalar-claude-cli)
 - [🪜 Paso 3: Instalar el MCP Server](#-paso-3-instalar-el-mcp-server)
 - [🪜 Paso 4: Configurar todo junto](#-paso-4-configurar-todo-junto)
 - [🪜 Paso 5: Verificar que todo funciona](#-paso-5-verificar-que-todo-funciona)
@@ -78,9 +78,9 @@ Dentro de Obsidian:
 
 ---
 
-## 🪜 Paso 2: Instalar Claude CLI
+## 🪜 Paso 2: Instalar Claude Code
 
-Claude CLI es la herramienta de línea de comandos de Anthropic.
+Claude Code es la herramienta de línea de comandos de Anthropic.
 
 ### Opción A — Instalación global con npm
 
@@ -101,7 +101,7 @@ npx @anthropic-ai/claude-code
 
 ### Configurar API Key
 
-Claude CLI necesita una API Key de Anthropic:
+Claude Code necesita una API Key de Anthropic:
 
 1. Ve a [console.anthropic.ai](https://console.anthropic.ai)
 2. Crea una cuenta o inicia sesión
@@ -179,7 +179,7 @@ claude mcp add obsidian -- npx @n8n/obsidian-mcp-server
 ## 🪜 Paso 5: Verificar que todo funciona
 
 ```bash
-# 1. Probar que Claude CLI responde
+# 1. Probar que Claude Code responde
 claude "¿Cuál es la capital de Francia?"
 
 # 2. Probar el MCP server
@@ -194,7 +194,7 @@ claude "Busca en mi vault de Obsidian notas sobre aprendizaje"
 
 - [ ] ✅ Node.js v18+ instalado
 - [ ] ✅ Obsidian instalado con vault creado
-- [ ] ✅ Claude CLI instalado y autenticado
+- [ ] ✅ Claude Code instalado y autenticado
 - [ ] ✅ MCP Server instalado
 - [ ] ✅ API Key configurada
 - [ ] ✅ Claude puede leer tu vault

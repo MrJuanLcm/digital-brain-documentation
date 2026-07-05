@@ -11,7 +11,7 @@ sidebar_position: 7
 
 ## 📋 Tabla de contenidos
 
-- [❌ Problema: Claude CLI no se encuentra](#-problema-claude-cli-no-se-encuentra)
+- [❌ Problema: Claude Code no se encuentra](#-problema-claude-cli-no-se-encuentra)
 - [❌ Problema: API Key no configurada](#-problema-api-key-no-configurada)
 - [❌ Problema: MCP Server no se conecta](#-problema-mcp-server-no-se-conecta)
 - [❌ Problema: Claude no puede leer mis notas](#-problema-claude-no-puede-leer-mis-notas)
@@ -28,13 +28,13 @@ sidebar_position: 7
 
 ---
 
-## ❌ Problema: Claude CLI no se encuentra
+## ❌ Problema: Claude Code no se encuentra
 
 ```bash
 zsh: command not found: claude
 ```
 
-**Causa:** Claude CLI no está instalado o no está en el PATH.
+**Causa:** Claude Code no está instalado o no está en el PATH.
 
 **Solución:**
 
@@ -369,7 +369,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━"
 
 echo "1. Node.js: $(node --version 2>/dev/null || echo '❌ No encontrado')"
 echo "2. npm: $(npm --version 2>/dev/null || echo '❌ No encontrado')"
-echo "3. Claude CLI: $(claude --version 2>/dev/null || echo '❌ No instalado')"
+echo "3. Claude Code: $(claude --version 2>/dev/null || echo '❌ No instalado')"
 echo "4. MCP Server: $(which obsidian-mcp-server 2>/dev/null || echo '❌ No instalado')"
 echo "5. API Key: $(echo ${ANTHROPIC_API_KEY:0:10}...) configurada"
 echo "6. Vault: $(ls /ruta/a/tu/vault/*.md 2>/dev/null | wc -l) notas encontradas"
