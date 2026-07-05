@@ -22,7 +22,7 @@ jobs:
         run: npm install -g markdownlint-cli
 
       - name: Markdown Lint
-        run: markdownlint '**/*.md' --ignore node_modules --ignore .git
+        run: markdownlint --config .markdownlintrc '**/*.md' --ignore node_modules --ignore .git
 
       - name: Verify internal links
         run: .github/scripts/validate-links.py
