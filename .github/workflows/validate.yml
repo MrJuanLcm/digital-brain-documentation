@@ -30,9 +30,13 @@ jobs:
       - name: Check file naming conventions
         run: |
           # Verificar kebab-case en prompts, templates, config, scripts
+          # Se excluye README.md (nombre estándar de GitHub)
           for dir in prompts templates config scripts; do
             for file in $(find $dir -name "*.md" -o -name "*.yaml" -o -name "*.js" 2>/dev/null); do
               basename=$(basename "$file")
+              if [ "$basename" = "README.md" ]; then
+                continue
+              fi
               if echo "$basename" | grep -qE '[A-Z_]'; then
                 echo "⚠️  Naming convention: $file (use kebab-case)"
                 exit 1

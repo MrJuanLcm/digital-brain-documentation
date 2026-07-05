@@ -1,8 +1,3 @@
----
-title: "Digital Brain"
-description: "Documentación para construir un cerebro digital con Obsidian + Claude CLI + MCP"
----
-
 <p align="center">
   <img src="https://img.shields.io/badge/status-activo-059669?style=flat-square" alt="Status">
   <img src="https://img.shields.io/badge/docs-v1.0-2563EB?style=flat-square" alt="Docs">
@@ -45,15 +40,15 @@ description: "Documentación para construir un cerebro digital con Obsidian + Cl
 
 ## 📖 Cómo usar esta guía
 
-| # | Paso | Documento | Aprenderás |
-|---|---|---|---|
-| 1️⃣ | 🧠 Introducción | [`docs/01-introduccion.md`](./docs/01-introduccion.md) | Conceptos y arquitectura |
-| 2️⃣ | 📥 Instalación | [`docs/02-instalacion.md`](./docs/02-instalacion.md) | Instalar dependencias |
-| 3️⃣ | ⚙️ Configuración | [`docs/03-configuracion.md`](./docs/03-configuracion.md) | Estructurar vault y Harness |
-| 4️⃣ | 🤖 Prompts | [`docs/04-prompts.md`](./docs/04-prompts.md) | Biblioteca de prompts |
-| 5️⃣ | 🎯 Casos de uso | [`docs/05-casos-de-uso.md`](./docs/05-casos-de-uso.md) | Ejemplos prácticos |
-| 6️⃣ | 🔌 MCP | [`docs/06-mcp-explicado.md`](./docs/06-mcp-explicado.md) | Protocolo MCP en detalle |
-| 7️⃣ | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes |
+| #   | Paso               | Documento                                                          | Aprenderás                  |
+| --- | ------------------ | ------------------------------------------------------------------ | --------------------------- |
+| 1️⃣  | 🧠 Introducción    | [`docs/01-introduccion.md`](./docs/01-introduccion.md)             | Conceptos y arquitectura    |
+| 2️⃣  | 📥 Instalación     | [`docs/02-instalacion.md`](./docs/02-instalacion.md)               | Instalar dependencias       |
+| 3️⃣  | ⚙️ Configuración   | [`docs/03-configuracion.md`](./docs/03-configuracion.md)           | Estructurar vault y Harness |
+| 4️⃣  | 🤖 Prompts         | [`docs/04-prompts.md`](./docs/04-prompts.md)                       | Biblioteca de prompts       |
+| 5️⃣  | 🎯 Casos de uso    | [`docs/05-casos-de-uso.md`](./docs/05-casos-de-uso.md)             | Ejemplos prácticos          |
+| 6️⃣  | 🔌 MCP             | [`docs/06-mcp-explicado.md`](./docs/06-mcp-explicado.md)           | Protocolo MCP en detalle    |
+| 7️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
 
 > 💡 **Tip:** Si eres nuevo, empieza por `docs/01-introduccion.md` y sigue en orden.
 
@@ -61,49 +56,49 @@ description: "Documentación para construir un cerebro digital con Obsidian + Cl
 
 ## 📂 Estructura del proyecto
 
-| Carpeta | Contenido |
-|---|---|
-| `docs/` | 📖 Documentación detallada (7 guías + glosario + cheatsheet) |
-| `prompts/` | 🤖 Biblioteca de prompts listos para copiar y pegar |
-| `scripts/` | ⚙️ Guías explicativas de automatización |
-| `config/` | 🔧 Archivos de configuración de referencia |
-| `templates/` | 📝 Plantillas para notas en Obsidian |
-| `examples/` | 🎯 Ejemplos prácticos y vault de demostración |
+| Carpeta      | Contenido                                                    |
+| ------------ | ------------------------------------------------------------ |
+| `docs/`      | 📖 Documentación detallada (7 guías + glosario + cheatsheet) |
+| `prompts/`   | 🤖 Biblioteca de prompts listos para copiar y pegar          |
+| `scripts/`   | ⚙️ Guías explicativas de automatización                      |
+| `config/`    | 🔧 Archivos de configuración de referencia                   |
+| `templates/` | 📝 Plantillas para notas en Obsidian                         |
+| `examples/`  | 🎯 Ejemplos prácticos y vault de demostración                |
 
 ---
 
 ## 🤖 Prompts disponibles
 
-| Prompt | Propósito |
-|---|---|
-| [`prompts/procesar-entrada.md`](./prompts/procesar-entrada.md) | 📥 Procesar info nueva y guardarla en el vault |
-| [`prompts/sincronizar-vault.md`](./prompts/sincronizar-vault.md) | 🔄 Reorganizar notas existentes |
-| [`prompts/generar-insights.md`](./prompts/generar-insights.md) | 💡 Encontrar conexiones entre notas |
-| [`prompts/revision-diaria.md`](./prompts/revision-diaria.md) | 📅 Revisión diaria de conocimiento |
+| Prompt                                                           | Propósito                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------- |
+| [`prompts/procesar-entrada.md`](./prompts/procesar-entrada.md)   | 📥 Procesar info nueva y guardarla en el vault |
+| [`prompts/sincronizar-vault.md`](./prompts/sincronizar-vault.md) | 🔄 Reorganizar notas existentes                |
+| [`prompts/generar-insights.md`](./prompts/generar-insights.md)   | 💡 Encontrar conexiones entre notas            |
+| [`prompts/revision-diaria.md`](./prompts/revision-diaria.md)     | 📅 Revisión diaria de conocimiento             |
 
 ---
 
 ## 🛠️ Requisitos mínimos
 
-| Herramienta | Versión |
-|---|---|
-| **Node.js** | v18+ |
-| **npm** | v9+ |
-| **Obsidian** | v1.5+ |
-| **Claude API Key** | Anthropic console |
-| **SO** | macOS / Linux / Windows (WSL2) |
+| Herramienta        | Versión                        |
+| ------------------ | ------------------------------ |
+| **Node.js**        | v18+                           |
+| **npm**            | v9+                            |
+| **Obsidian**       | v1.5+                          |
+| **Claude API Key** | Anthropic console              |
+| **SO**             | macOS / Linux / Windows (WSL2) |
 
 ---
 
 ## 📋 Referencia rápida
 
-| Recurso | Enlace |
-|---|---|
-| 📋 Cheatsheet | [`docs/cheatsheet.md`](./docs/cheatsheet.md) |
-| 📖 Glosario | [`docs/glosario.md`](./docs/glosario.md) |
-| 🎨 Guía de estilo | [`STYLEGUIDE.md`](./STYLEGUIDE.md) |
-| 🎯 Ejemplos | [`examples/`](./examples/) |
-| 📝 Plantillas | [`templates/`](./templates/) |
+| Recurso           | Enlace                                       |
+| ----------------- | -------------------------------------------- |
+| 📋 Cheatsheet     | [`docs/cheatsheet.md`](./docs/cheatsheet.md) |
+| 📖 Glosario       | [`docs/glosario.md`](./docs/glosario.md)     |
+| 🎨 Guía de estilo | [`STYLEGUIDE.md`](./STYLEGUIDE.md)           |
+| 🎯 Ejemplos       | [`examples/`](./examples/)                   |
+| 📝 Plantillas     | [`templates/`](./templates/)                 |
 
 ---
 
