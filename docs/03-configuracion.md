@@ -197,66 +197,92 @@ Graphify escanea tu vault de Obsidian y genera un grafo de conocimiento navegabl
 ### 6.1 Instalar Graphify
 
 ```bash
-# Opción A: Instalar desde GitHub (recomendado)
-npm install -g github:Graphify-Labs/graphify
+# Instalar paquete Python (oficial: graphifyy con doble 'y')
+pip install graphifyy
 
-# Opción B: Clonar y compilar localmente
-git clone https://github.com/Graphify-Labs/graphify.git
-cd graphify && npm install && npm run build
-npm link
+# Instalar skill en Claude Code (auto-detecta plataforma)
+graphify install
+
+# Verificar
+graphify status
 ```
 
-### 6.2 Configurar para tu vault
+> 💡 **Tip:** El paquete en PyPI se llama `graphifyy` (doble 'y'). El comando CLI sigue siendo `graphify`.
+
+**Extras opcionales:**
+```bash
+# PDF support
+pip install "graphifyy[pdf]"
+
+# Video/audio transcription (faster-whisper + yt-dlp)
+pip install "graphifyy[video]"
+
+# MCP server
+pip install "graphifyy[mcp]"
+
+# Neo4j export
+pip install "graphifyy[neo4j]"
+
+# Todo junto
+pip install "graphifyy[all]"
+```
+
+### 6.2 Usar Graphify en tu vault
 
 ```bash
-# Inicializar configuración en tu vault
+# Escaneo único (genera graphify-out/ en el directorio actual)
 cd /ruta/a/tu/vault
-graphify init
-```
-
-Esto crea un archivo `graphify.config.yaml` en tu vault:
-
-```yaml
-# graphify.config.yaml
-vault_path: "."
-output_dir: "graphify-out"
-formats:
-  - obsidian
-  - html
-  - wiki
-watch: false
-ignore:
-  - ".obsidian"
-  - "node_modules"
-  - ".git"
-  - "graphify-out"
-```
-
-### 6.3 Usar Graphify
-
-```bash
-# Escaneo único
 graphify .
 
-# Modo vigilancia (actualiza automáticamente al guardar notas)
+# Con vault Obsidian específico (escribe en vault existente sin tocar tus notas)
+graphify . --obsidian --obsidian-dir ~/vaults/mi-proyecto
+
+# Modo vigilancia (actualiza automáticamente al detectar cambios)
 graphify watch
 
 # Ver estado y configuración
 graphify status
+
+# Consultar el grafo
+graphify query "¿Cómo se conecta X con Y?"
+
+# Reconstruir solo cambios (incremental via cache SHA256)
+graphify . --update
+
+# Git hook: reconstruir en cada commit
+graphify hook install
+```
+
+### 6.3 Outputs que genera Graphify
+
+```
+graphify-out/
+├── graph.html           ← Visualización HTML interactiva (click, filtra, busca)
+├── GRAPH_REPORT.md      ← Auditoría: god nodes, conexiones sorprendentes, preguntas sugeridas
+├── graph.json           ← Grafo persistente (node-link format, NetworkX/Neo4j compatible)
+├── obsidian/            ← Vault Obsidian (solo si usaste --obsidian)
+│   ├── entities/        ← Cada entidad = nota .md con wikilinks
+│   └── relationships/   ← Relaciones como notas
+├── wiki/                ← Wiki navegable estilo Wikipedia (--wiki)
+│   ├── index.md
+│   └── ...
+├── cache/               ← SHA256 cache (re-runs en segundos en corpus sin cambios)
+│   └── ...
+└── memory/              ← Q&A feedback loop (respuestas guardadas como nodos)
+    └── ...
 ```
 
 ### 6.4 Integrar con el flujo de trabajo
 
-Los outputs de Graphify:
+| Output | Comando | Para qué sirve |
+|--------|---------|----------------|
+| Grafo visual | `graphify .` → abre `graphify-out/graph.html` | Explorar conocimiento visualmente, filtrar por comunidad |
+| Vault Obsidian | `graphify . --obsidian` → abre en Obsidian | Graph view nativo, Dataview, wikilinks |
+| Wiki estática | `graphify . --wiki` → `graphify-out/wiki/` | Publicar en GitHub Pages |
+| Reporte | `cat graphify-out/GRAPH_REPORT.md` | God nodes, conexiones sorpresa, preguntas sugeridas |
+| MCP Server | `python -m graphify.serve graphify-out/graph.json` | Herramientas: query_graph, get_node, get_neighbors, shortest_path, get_pr_impact, triage_prs |
 
-| Output | Ubicación | Para qué sirve |
-|--------|-----------|----------------|
-| Grafo visual | `graphify-out/graph.html` | Navegar el conocimiento visualmente |
-| Vault navegable | `graphify-out/obsidian/` | Abrir como vault secundario en Obsidian |
-| Web estática | `graphify-out/wiki/` | Publicar como sitio web (GitHub Pages) |
-| Reporte | `graphify-out/GRAPH_REPORT.md` | Estadísticas del grafo |
-
-> 💡 **Tip:** Añade `graphify-out/` a `.gitignore` y configura `graphify watch` en segundo plano para que el grafo se actualice solo.
+> 💡 **Tip:** Añade `graphify-out/` a `.gitignore`. El cache SHA256 hace que re-runs en corpus sin cambios tomen segundos. Usa `graphify hook install` para auto-rebuild en cada commit.
 
 ---
 
@@ -286,7 +312,7 @@ ls /ruta/a/tu/vault/Inbox/
 - [ ] 🤖 Prompts de sistema cargados
 - [ ] 🔐 API Key segura en variable de entorno
 - [ ] 💾 Backups configurados
-- [ ] 🧠 Graphify instalado y configurado (`graphify init`)
+- [ ] 🧠 Graphify instalado (`pip install graphifyy && graphify install`)
 - [ ] 🧪 Prueba de extremo a extremo funcionando
 
 ---

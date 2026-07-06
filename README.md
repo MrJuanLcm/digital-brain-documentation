@@ -79,15 +79,17 @@
 
 ## 🧠 Graphify — Grafo de conocimiento automatizado
 
-Graphify complementa tu Digital Brain generando un **grafo de conocimiento persistente** desde todo tu vault:
+Graphify complementa tu Digital Brain generando un **grafo de conocimiento persistente** desde tu vault (código, docs, PDFs, imágenes, videos):
 
-| Comando           | Qué hace                                                 |
-| ----------------- | -------------------------------------------------------- |
-| `graphify .`      | Escanea el vault y genera grafo (entidades + relaciones) |
-| `graphify watch`  | Modo vigilancia: actualiza el grafo automáticamente      |
-| `graphify status` | Estado del skill y configuración                         |
+| Comando | Qué hace |
+|---------|----------|
+| `graphify .` | Escanea y genera grafo (entidades + relaciones) |
+| `graphify watch` | Modo vigilancia: actualiza automáticamente |
+| `graphify query "..."` | Consulta semántica al grafo |
+| `graphify status` | Estado del skill y configuración |
+| `graphify hook install` | Git hook: rebuild en cada commit |
 
-**Outputs:** `graph.html` (visual), `graphify-out/obsidian/` (vault navegable), `wiki/` (web estática), `GRAPH_REPORT.md` (reporte).
+**Outputs:** `graph.html` (visual interactivo), `graphify-out/obsidian/` (vault navegable), `wiki/` (web estática), `GRAPH_REPORT.md` (god nodes, conexiones sorpresa, preguntas), `graph.json` (persistente, NetworkX/Neo4j), `cache/` (SHA256 incremental), `memory/` (Q&A feedback loop).
 
 > 📖 Ver integración completa: [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md)
 
@@ -106,14 +108,15 @@ Graphify complementa tu Digital Brain generando un **grafo de conocimiento persi
 
 ## 🛠️ Requisitos mínimos
 
-| Herramienta        | Versión                        |
-| ------------------ | ------------------------------ |
-| **Node.js**        | v18+                           |
-| **npm**            | v9+                            |
-| **Graphify**       | [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify) |
-| **Obsidian**       | v1.5+                          |
-| **Claude API Key** | Anthropic console              |
-| **SO**             | macOS / Linux / Windows (WSL2) |
+| Herramienta | Versión |
+|-------------|---------|
+| **Node.js** | v18+ |
+| **npm** | v9+ |
+| **Python** | 3.10+ |
+| **Graphify** | `pip install graphifyy` → [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify) |
+| **Obsidian** | v1.5+ |
+| **Claude API Key** | Anthropic console |
+| **SO** | macOS / Linux / Windows (WSL2) |
 
 ---
 

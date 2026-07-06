@@ -153,17 +153,34 @@ El archivo [`../config/mcp-server.js`](../config/mcp-server.js) contiene un serv
 Graphify genera un grafo de conocimiento persistente desde tu vault de Obsidian.
 
 ```bash
-# Instalar desde GitHub
-npm install -g github:Graphify-Labs/graphify
+# Instalar paquete Python (oficial: graphifyy con doble 'y')
+pip install graphifyy
+
+# Instalar skill en Claude Code (auto-detecta plataforma)
+graphify install
 
 # Verificar
-graphify --version
+graphify status
 ```
 
-> 💡 **Tip:** También puedes instalarlo desde el repo local si tienes el código:
+> 💡 **Tip:** El paquete en PyPI se llama `graphifyy` (doble 'y'). El comando CLI sigue siendo `graphify`.
+> 
+> **Opcional — Extras:**
 > ```bash
-> git clone https://github.com/Graphify-Labs/graphify.git
-> cd graphify && npm install && npm link
+> # PDF support
+> pip install "graphifyy[pdf]"
+> 
+> # Video/audio transcription (faster-whisper + yt-dlp)
+> pip install "graphifyy[video]"
+> 
+> # MCP server
+> pip install "graphifyy[mcp]"
+> 
+> # Neo4j export
+> pip install "graphifyy[neo4j]"
+> 
+> # Todo junto
+> pip install "graphifyy[all]"
 > ```
 
 ---
@@ -205,10 +222,17 @@ claude "¿Cuál es la capital de Francia?"
 # 2. Probar el MCP server
 claude "Busca en mi vault de Obsidian notas sobre aprendizaje"
 
-# 3. Probar Graphify
+# 3. Probar Graphify (genera grafo en graphify-out/)
 graphify .
 
-# 4. Si todo funciona, deberías ver resultados de tu vault y el grafo generado
+# 4. Ver outputs generados
+ls graphify-out/
+# graph.html       - visualización interactiva
+# GRAPH_REPORT.md  - reporte con god nodes, conexiones, preguntas
+# graph.json       - grafo persistente
+# obsidian/        - vault de Obsidian (si usaste --obsidian)
+
+# 5. Si todo funciona, deberías ver resultados de tu vault y el grafo generado
 ```
 
 ---
