@@ -148,9 +148,29 @@ El archivo [`../config/mcp-server.js`](../config/mcp-server.js) contiene un serv
 
 ---
 
-## 🪜 Paso 4: Configurar todo junto
+## 🪜 Paso 4: Instalar Graphify (Grafo de conocimiento)
 
-### 4.1 Crear archivo de configuración del Harness
+Graphify genera un grafo de conocimiento persistente desde tu vault de Obsidian.
+
+```bash
+# Instalar desde GitHub
+npm install -g github:Graphify-Labs/graphify
+
+# Verificar
+graphify --version
+```
+
+> 💡 **Tip:** También puedes instalarlo desde el repo local si tienes el código:
+> ```bash
+> git clone https://github.com/Graphify-Labs/graphify.git
+> cd graphify && npm install && npm link
+> ```
+
+---
+
+## 🪜 Paso 5: Configurar todo junto
+
+### 5.1 Crear archivo de configuración del Harness
 
 Crea `~/.digital-brain/config.yaml`:
 
@@ -167,7 +187,7 @@ backup_interval_hours: 24
 
 O usa el que viene en [`../config/harness-config.yaml`](../config/harness-config.yaml) y edita la ruta.
 
-### 4.2 Configurar Claude para usar MCP
+### 5.2 Configurar Claude para usar MCP
 
 ```bash
 # Agregar el MCP server a la configuración de Claude
@@ -176,7 +196,7 @@ claude mcp add obsidian -- npx @n8n/obsidian-mcp-server
 
 ---
 
-## 🪜 Paso 5: Verificar que todo funciona
+## 🪜 Paso 6: Verificar que todo funciona
 
 ```bash
 # 1. Probar que Claude Code responde
@@ -185,7 +205,10 @@ claude "¿Cuál es la capital de Francia?"
 # 2. Probar el MCP server
 claude "Busca en mi vault de Obsidian notas sobre aprendizaje"
 
-# 3. Si todo funciona, deberías ver resultados de tu vault
+# 3. Probar Graphify
+graphify .
+
+# 4. Si todo funciona, deberías ver resultados de tu vault y el grafo generado
 ```
 
 ---
@@ -196,8 +219,10 @@ claude "Busca en mi vault de Obsidian notas sobre aprendizaje"
 - [ ] ✅ Obsidian instalado con vault creado
 - [ ] ✅ Claude Code instalado y autenticado
 - [ ] ✅ MCP Server instalado
+- [ ] ✅ Graphify instalado
 - [ ] ✅ API Key configurada
 - [ ] ✅ Claude puede leer tu vault
+- [ ] ✅ Graphify genera el grafo
 
 ---
 

@@ -190,7 +190,77 @@ echo ".obsidian/" >> .gitignore
 
 ---
 
-## 🧪 6. Probar la configuración
+## 🧠 6. Configurar Graphify (Grafo de conocimiento)
+
+Graphify escanea tu vault de Obsidian y genera un grafo de conocimiento navegable.
+
+### 6.1 Instalar Graphify
+
+```bash
+# Opción A: Instalar desde GitHub (recomendado)
+npm install -g github:Graphify-Labs/graphify
+
+# Opción B: Clonar y compilar localmente
+git clone https://github.com/Graphify-Labs/graphify.git
+cd graphify && npm install && npm run build
+npm link
+```
+
+### 6.2 Configurar para tu vault
+
+```bash
+# Inicializar configuración en tu vault
+cd /ruta/a/tu/vault
+graphify init
+```
+
+Esto crea un archivo `graphify.config.yaml` en tu vault:
+
+```yaml
+# graphify.config.yaml
+vault_path: "."
+output_dir: "graphify-out"
+formats:
+  - obsidian
+  - html
+  - wiki
+watch: false
+ignore:
+  - ".obsidian"
+  - "node_modules"
+  - ".git"
+  - "graphify-out"
+```
+
+### 6.3 Usar Graphify
+
+```bash
+# Escaneo único
+graphify .
+
+# Modo vigilancia (actualiza automáticamente al guardar notas)
+graphify watch
+
+# Ver estado y configuración
+graphify status
+```
+
+### 6.4 Integrar con el flujo de trabajo
+
+Los outputs de Graphify:
+
+| Output | Ubicación | Para qué sirve |
+|--------|-----------|----------------|
+| Grafo visual | `graphify-out/graph.html` | Navegar el conocimiento visualmente |
+| Vault navegable | `graphify-out/obsidian/` | Abrir como vault secundario en Obsidian |
+| Web estática | `graphify-out/wiki/` | Publicar como sitio web (GitHub Pages) |
+| Reporte | `graphify-out/GRAPH_REPORT.md` | Estadísticas del grafo |
+
+> 💡 **Tip:** Añade `graphify-out/` a `.gitignore` y configura `graphify watch` en segundo plano para que el grafo se actualice solo.
+
+---
+
+## 🧪 7. Probar la configuración
 
 ```bash
 # 1. Verificar que el MCP server responde
@@ -216,6 +286,7 @@ ls /ruta/a/tu/vault/Inbox/
 - [ ] 🤖 Prompts de sistema cargados
 - [ ] 🔐 API Key segura en variable de entorno
 - [ ] 💾 Backups configurados
+- [ ] 🧠 Graphify instalado y configurado (`graphify init`)
 - [ ] 🧪 Prueba de extremo a extremo funcionando
 
 ---

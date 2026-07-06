@@ -17,6 +17,7 @@ sidebar_position: 5
 - [📝 Caso 4: Procesar una idea repentina](#-caso-4-procesar-una-idea-repentina)
 - [🔄 Caso 5: Reorganización mensual](#-caso-5-reorganización-mensual)
 - [🌐 Caso 6: Integración con web](#-caso-6-integración-con-web)
+- [🧠 Caso 7: Mapa del conocimiento con Graphify](#-caso-7-mapa-del-conocimiento-con-graphify)
 
 ---
 
@@ -133,6 +134,44 @@ curl -s "https://ejemplo.com/articulo" | \
 # y pasar el texto limpio
 pbpaste | claude "$(cat ../prompts/procesar-entrada.md)"
 ```
+
+---
+
+## 🧠 Caso 7: Mapa del conocimiento con Graphify
+
+**Situación:** Llevas meses usando el Digital Brain y quieres ver el "panorama completo" de todo tu conocimiento, descubrir conexiones ocultas y encontrar lagunas.
+
+```bash
+# 1️⃣ Genera el grafo completo del vault
+cd /ruta/a/tu/vault
+graphify .
+
+# 2️⃣ Abre la visualización HTML
+open graphify-out/graph.html
+
+# 3️⃣ Abre el vault generado como vault secundario en Obsidian
+#    File → Open vault → Selecciona graphify-out/obsidian/
+
+# 4️⃣ Usa el prompt especializado para que Claude analice el grafo
+claude "$(cat ../prompts/graphify-insights.md)"
+```
+
+**Qué obtienes:**
+
+| Output | Para qué sirve |
+|--------|----------------|
+| `graph.html` | Mapa visual interactivo de todo tu conocimiento |
+| `graphify-out/obsidian/` | Vault navegable con entidades como notas |
+| `wiki/` | Sitio web estático publicable (GitHub Pages) |
+| `GRAPH_REPORT.md` | Estadísticas y clusters detectados |
+| Insights de Claude | Conexiones nuevas que no habías visto |
+
+**Flujo recomendado:**
+1. Ejecuta `graphify .` cada semana o mes
+2. Revisa `graph.html` para ver clusters visuales
+3. Usa `graphify-insights.md` para que Claude te sugiera conexiones
+4. Integra los hallazgos a tu vault principal
+5. Repite — el grafo crece con tu conocimiento
 
 ---
 

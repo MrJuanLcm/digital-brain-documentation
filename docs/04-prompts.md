@@ -29,6 +29,7 @@ sidebar_position: 4
 | 2 | 🔄 Sincronizar vault | Revisar y reorganizar notas existentes |
 | 3 | 💡 Generar insights | Encontrar conexiones entre notas |
 | 4 | 📅 Revisión diaria | Revisar el progreso y conocimiento diario |
+| 5 | 🧠 Analizar grafo | Analizar el grafo de conocimiento con Graphify |
 
 ---
 
@@ -114,6 +115,30 @@ claude "$(cat prompts/revision-diaria.md)"
 4. 🗺️ Actualiza MOCs relevantes
 5. ✅ Limpia el inbox (procesa notas pendientes)
 6. 🎯 Sugiere temas para el día siguiente
+
+---
+
+## 5️⃣ 🧠 Analizar grafo (Graphify)
+
+**Archivo:** [`../prompts/graphify-insights.md`](../prompts/graphify-insights.md)
+
+**Cuándo usarlo:** Después de generar el grafo con Graphify (`graphify .`), quieres que Claude analice el reporte y encuentre conexiones nuevas.
+
+**Uso:**
+```bash
+# 1. Primero genera el grafo
+graphify .
+
+# 2. Luego analiza con Claude
+claude "$(cat prompts/graphify-insights.md)"
+```
+
+**Qué hace:**
+1. 📊 Lee el `GRAPH_REPORT.md` generado por Graphify
+2. 🔍 Identifica clusters de conocimiento aislados
+3. 💡 Sugiere conexiones entre áreas que no habías vinculado
+4. 📝 Crea notas de insight en tu vault
+5. 🗺️ Propone actualizaciones a MOCs existentes
 
 ---
 

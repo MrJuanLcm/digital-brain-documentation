@@ -25,7 +25,7 @@
 
 ## 🤔 ¿Qué es esto?
 
-**Digital Brain** es un sistema que convierte **Obsidian** en el centro de tu conocimiento personal, usando **Claude Code** como asistente de IA y **MCP (Model Context Protocol)** como puente de comunicación.
+**Digital Brain** es un sistema que convierte **Obsidian** en el centro de tu conocimiento personal, usando **Claude Code** como asistente de IA, **MCP (Model Context Protocol)** como puente de comunicación y **Graphify** como grafo de conocimiento automatizado.
 
 ```
        👤 Tú
@@ -36,6 +36,13 @@
   │   CLI    │     │  Server  │     │  Vault   │
   │  (Mente) │     │ (Puente) │     │(Memoria) │
   └──────────┘     └──────────┘     └──────────┘
+        ▲
+        │
+        ▼
+  ┌──────────┐
+  │ Graphify │
+  │  (Grafo) │
+  └──────────┘
 ```
 
 ---
@@ -50,7 +57,8 @@
 | 4️⃣  | 🤖 Prompts         | [`docs/04-prompts.md`](./docs/04-prompts.md)                       | Biblioteca de prompts       |
 | 5️⃣  | 🎯 Casos de uso    | [`docs/05-casos-de-uso.md`](./docs/05-casos-de-uso.md)             | Ejemplos prácticos          |
 | 6️⃣  | 🔌 MCP             | [`docs/06-mcp-explicado.md`](./docs/06-mcp-explicado.md)           | Protocolo MCP en detalle    |
-| 7️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
+| 7️⃣  | 🧠 Graphify        | [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md) | Grafo de conocimiento       |
+| 8️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
 
 > 💡 **Tip:** Si eres nuevo, empieza por `docs/01-introduccion.md` y sigue en orden.
 
@@ -102,6 +110,7 @@ Graphify complementa tu Digital Brain generando un **grafo de conocimiento persi
 | ------------------ | ------------------------------ |
 | **Node.js**        | v18+                           |
 | **npm**            | v9+                            |
+| **Graphify**       | [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify) |
 | **Obsidian**       | v1.5+                          |
 | **Claude API Key** | Anthropic console              |
 | **SO**             | macOS / Linux / Windows (WSL2) |
@@ -136,6 +145,8 @@ MIT — haz lo que quieras con esto.
 📓 Se guarda estructurada en Obsidian
    ↓
 🔗 Claude conecta con notas existentes
+   ↓
+🧠 Graphify actualiza el grafo de conocimiento
    ↓
 💡 Obtienes insights y nuevas conexiones
    ↓

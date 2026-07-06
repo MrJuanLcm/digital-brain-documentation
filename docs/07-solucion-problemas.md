@@ -23,6 +23,7 @@ sidebar_position: 7
 - [❌ Problema: Timeouts en MCP Server](#-problema-timeouts-en-mcp-server)
 - [❌ Problema: Rutas con espacios en Windows](#-problema-rutas-con-espacios-en-windows)
 - [❌ Problema: Vault muy grande (rendimiento)](#-problema-vault-muy-grande-rendimiento)
+- [❌ Problema: Graphify falla o no genera grafo](#-problema-graphify-falla-o-no-genera-grafo)
 - [❌ Problema: Conflictos de plugins en Obsidian](#-problema-conflictos-de-plugins-en-obsidian)
 - [🔍 Diagnóstico rápido](#-diagnóstico-rápido)
 
@@ -321,6 +322,63 @@ exclude_patterns:
 
 # 4. Archivar proyectos antiguos
 mv Proyectos/antiguo/ Archive/
+```
+
+---
+
+## ❌ Problema: Graphify falla o no genera grafo
+
+### Síntomas
+```bash
+graphify .
+# Error: ModuleNotFoundError: No module named 'graphify'
+# O: graphify: command not found
+# O: El grafo se genera pero está vacío
+```
+
+### Causas y soluciones
+
+| Causa | Solución |
+|-------|----------|
+| No instalado | `pip install graphifyy && graphify install` |
+| No en PATH | `export PATH="$HOME/.local/bin:$PATH"` y reiniciar terminal |
+| Skill no instalado en Claude | `graphify install` (requiere Claude Code) |
+| Vault vacío o sin .md | Verifica que hay archivos `.md` en el vault |
+| Permisos | `chmod -R 755 /ruta/a/tu/vault` |
+| Python version | Requiere Python 3.10+, verifica con `python3 --version` |
+
+### Debug paso a paso
+
+```bash
+# 1. Verificar instalación
+pip show graphifyy
+graphify status
+
+# 2. Verificar skill en Claude
+claude mcp list
+
+# 3. Test con directorio simple
+mkdir /tmp/test-graphify
+echo "# Test" > /tmp/test-graphify/test.md
+cd /tmp/test-graphify
+graphify .
+
+# 4. Ver logs detallados
+graphify . --verbose
+
+# 5. Verificar outputs
+ls -la graphify-out/
+```
+
+### Graphify watch no detecta cambios
+
+```bash
+# Verificar que inotify está disponible (Linux)
+sudo apt-get install inotify-tools
+
+# macOS - usar fsevents (incluido)
+# Si falla, probar sin watch:
+graphify .  # regeneración manual
 ```
 
 ---
