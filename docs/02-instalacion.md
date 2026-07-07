@@ -126,25 +126,28 @@ claude "Hola, ¿cómo estás?"
 
 El MCP Server permite que Claude lea y escriba en tu vault de Obsidian.
 
-### Opción A — Usando obsidian-mcp-server (recomendado)
+### Opción recomendada — Usar el servidor incluido en este proyecto
+
+Este repositorio incluye un servidor MCP listo para usar en la carpeta `config/`.
+
+**Copia la carpeta `config/` a la raíz de tu proyecto personal:**
 
 ```bash
-# Instalar globalmente
-npm install -g @n8n/obsidian-mcp-server
+# Si clonaste este repo como referencia, copia la carpeta config/ a tu proyecto:
+cp -r /ruta/a/este/repo/config /ruta/a/tu/proyecto/config
 
-# Verificar
-obsidian-mcp-server --version
+# O simplemente navega a la raíz de tu proyecto y crea la carpeta config/
+# con los archivos mcp-server.js, harness-config.yaml package.json
 ```
 
-### Opción B — Usar el servidor incluido en este proyecto
+Luego instala las dependencias:
 
 ```bash
-# Instalar dependencias locales
 cd config/
 npm install
 ```
 
-El archivo [`../config/mcp-server.js`](../config/mcp-server.js) contiene un servidor MCP listo para usar.
+El archivo `config/mcp-server.js` contiene un servidor MCP listo para usar.
 
 ---
 
@@ -195,7 +198,7 @@ Crea `~/.digital-brain/config.yaml`:
 # ~/.digital-brain/config.yaml
 
 vault_path: "/Users/tu-usuario/Documents/DigitalBrain"
-obsidian_mcp_server: "@n8n/obsidian-mcp-server"
+obsidian_mcp_server: "node config/mcp-server.js"
 claude_model: "claude-sonnet-4-20250514"
 auto_start: true
 backup_enabled: true
@@ -208,7 +211,8 @@ O usa el que viene en [`../config/harness-config.yaml`](../config/harness-config
 
 ```bash
 # Agregar el MCP server a la configuración de Claude
-claude mcp add obsidian -- npx @n8n/obsidian-mcp-server
+# (ejecutar desde la raíz de tu proyecto)
+claude mcp add obsidian -- node config/mcp-server.js
 ```
 
 ---

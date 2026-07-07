@@ -27,14 +27,14 @@ sidebar_position: 5
 
 ```bash
 # 1️⃣ Pega un artículo en el sistema
-pbpaste | claude "$(cat ../prompts/procesar-entrada.md)"
+pbpaste | claude "$(cat prompts/procesar-entrada.md)"
 
 # 2️⃣ Claude extrae y guarda conceptos clave
 #     → Crea nota en Inbox/arquitectura-hexagonal.md
 #     → Extrae: puertos, adaptadores, dominio, infraestructura
 
 # 3️⃣ Pide a Claude que conecte con lo que ya sabes
-claude "$(cat ../prompts/generar-insights.md)" \
+claude "$(cat prompts/generar-insights.md)" \
   --filter "arquitectura hexagonal"
 ```
 
@@ -48,7 +48,7 @@ claude "$(cat ../prompts/generar-insights.md)" \
 
 ```bash
 # Por la noche, revisión diaria
-claude "$(cat ../prompts/revision-diaria.md)"
+claude "$(cat prompts/revision-diaria.md)"
 ```
 
 **Lo que hace Claude:**
@@ -66,11 +66,11 @@ claude "$(cat ../prompts/revision-diaria.md)"
 ```bash
 # 1️⃣ Procesa cada PDF
 for pdf in *.pdf; do
-  pdftotext "$pdf" - | claude "$(cat ../prompts/procesar-entrada.md)"
+  pdftotext "$pdf" - | claude "$(cat prompts/procesar-entrada.md)"
 done
 
 # 2️⃣ Genera un mapa de conceptos
-claude "$(cat ../prompts/generar-insights.md)" \
+claude "$(cat prompts/generar-insights.md)" \
   --filter "examen-biologia"
 
 # 3️⃣ Pide un resumen unificado
@@ -91,7 +91,7 @@ que conecte todas las notas que procesé sobre este tema."
 
 ```bash
 # Rápido: pasas la idea a Claude directamente
-claude "$(cat ../prompts/procesar-entrada.md)" << 'EOF'
+claude "$(cat prompts/procesar-entrada.md)" << 'EOF'
 Se me ocurrió que podríamos combinar el sistema de
 recomendación con un grafo de conocimiento para
 hacer sugerencias más contextuales. La clave sería
@@ -109,7 +109,7 @@ EOF
 
 ```bash
 # Escanea y reorganiza
-claude "$(cat ../prompts/sincronizar-vault.md)"
+claude "$(cat prompts/sincronizar-vault.md)"
 
 # Claude va a:
 # 1. Encontrar notas huérfanas (sin enlaces)
@@ -128,11 +128,11 @@ claude "$(cat ../prompts/sincronizar-vault.md)"
 # Opción 1: Copiar URL y procesar
 curl -s "https://ejemplo.com/articulo" | \
   pandoc -f html -t markdown | \
-  claude "$(cat ../prompts/procesar-entrada.md)"
+  claude "$(cat prompts/procesar-entrada.md)"
 
 # Opción 2: Usar una herramienta como Reader Mode
 # y pasar el texto limpio
-pbpaste | claude "$(cat ../prompts/procesar-entrada.md)"
+pbpaste | claude "$(cat prompts/procesar-entrada.md)"
 ```
 
 ---
@@ -153,7 +153,7 @@ open graphify-out/graph.html
 #    File → Open vault → Selecciona graphify-out/obsidian/
 
 # 4️⃣ Usa el prompt especializado para que Claude analice el grafo
-claude "$(cat ../prompts/graphify-insights.md)"
+claude "$(cat prompts/graphify-insights.md)"
 ```
 
 **Qué obtienes:**
@@ -186,7 +186,7 @@ claude "$(cat ../prompts/graphify-insights.md)"
 
 ---
 
-> 💡 **Tip:** Estos casos son acumulativos. Empieza por el Caso 1 (investigación) y avanza. Cada caso asume que dominas el anterior.
+> 💡 **Tip:** Todos los comandos asumen que estás en la raíz de tu proyecto, donde copiaste la carpeta `prompts/`. Estos casos son acumulativos: empieza por el Caso 1 (investigación) y avanza.
 
 ## ➡️ Siguiente paso
 

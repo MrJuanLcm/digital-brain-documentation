@@ -163,7 +163,7 @@ Plantillas de prompts reutilizables que el servidor ofrece al modelo.
 
 ## 🛠️ Herramientas que expone nuestro MCP Server
 
-Cuando instalas el `obsidian-mcp-server`, Claude puede usar estas herramientas:
+Cuando ejecutas el servidor MCP, Claude puede usar estas herramientas:
 
 | Herramienta       | Descripción                  | Ejemplo                                       |
 | ----------------- | ---------------------------- | --------------------------------------------- |

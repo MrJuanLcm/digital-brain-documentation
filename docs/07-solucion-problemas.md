@@ -99,7 +99,7 @@ Error: Could not connect to MCP server obsidian
 
 2. **El servidor no está instalado**
    ```bash
-   npm install -g @n8n/obsidian-mcp-server
+   cd config && npm install
    ```
 
 3. **Puerto ocupado**
@@ -250,8 +250,8 @@ Claude responde: "The request timed out" o tarda >30s en responder
 | Causa | Solución |
 |-------|----------|
 | Vault muy grande (>5000 notas) | Aumentar timeout: `claude mcp call obsidian list_notes limit=10` |
-| Obsidian-mcp-server antiguo | Actualizar: `npm update -g @n8n/obsidian-mcp-server` |
-| Índice de búsqueda corrupto | Borrar `~/.cache/obsidian-mcp-server/` y reiniciar |
+| Servidor MCP desactualizado | Actualizar: `cd config && npm update` |
+| Índice corrupto | No aplica con el servidor local (no usa caché) |
 | Muchas llamadas concurrentes | Usar `limit` en las queries, evitar `list_notes` sin filtro |
 
 **Configuración de timeout:**
@@ -270,10 +270,10 @@ En Windows/WSL2, rutas con espacios rompen comandos.
 
 ```bash
 # ❌ Mal - falla por espacios
-claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault "C:\Users\Mi Usuario\Documents\Mi Vault"
+claude mcp add obsidian -- node config/mcp-server.js --vault "C:\Users\Mi Usuario\Documents\Mi Vault"
 
 # ✅ Bien - comillas dobles escapadas o ruta sin espacios
-claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault "C:\\Users\\Mi Usuario\\Documents\\Mi Vault"
+claude mcp add obsidian -- node config/mcp-server.js --vault "C:\\Users\\Mi Usuario\\Documents\\Mi Vault"
 ```
 
 **Solución recomendada:** Usar ruta sin espacios o vincular:
@@ -428,7 +428,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "1. Node.js: $(node --version 2>/dev/null || echo '❌ No encontrado')"
 echo "2. npm: $(npm --version 2>/dev/null || echo '❌ No encontrado')"
 echo "3. Claude Code: $(claude --version 2>/dev/null || echo '❌ No instalado')"
-echo "4. MCP Server: $(which obsidian-mcp-server 2>/dev/null || echo '❌ No instalado')"
+echo "4. MCP Server: $(node config/mcp-server.js --version 2>/dev/null && echo '✅ Activo' || echo '❌ No disponible')"
 echo "5. API Key: $(echo ${ANTHROPIC_API_KEY:0:10}...) configurada"
 echo "6. Vault: $(ls /ruta/a/tu/vault/*.md 2>/dev/null | wc -l) notas encontradas"
 SCRIPT

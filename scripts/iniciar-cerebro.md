@@ -15,18 +15,15 @@ export OBSIDIAN_VAULT_PATH="/ruta/a/tu/vault"
 ## 2️⃣ Iniciar el MCP Server
 
 ```bash
-# Usando obsidian-mcp-server global
-obsidian-mcp-server --vault "$OBSIDIAN_VAULT_PATH"
-
-# O usando el servidor local (desde config/)
-node config/mcp-server.js
+# Usando el servidor local (desde config/)
+node config/mcp-server.js --vault "$OBSIDIAN_VAULT_PATH"
 ```
 
 ## 3️⃣ Conectar Claude con Obsidian
 
 ```bash
 # En otra terminal, registrar el servidor MCP
-claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault /ruta/a/tu/vault
+claude mcp add obsidian -- node config/mcp-server.js --vault /ruta/a/tu/vault
 
 # Verificar que está conectado
 claude mcp list

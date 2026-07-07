@@ -12,7 +12,7 @@
 |---|---|---|
 | **Node.js v20+** | Entorno de ejecución | `brew install node@20` (macOS) o `apt install nodejs` (Linux) |
 | **Claude Code** | Interfaz de IA | `npm install -g @anthropic-ai/claude-code` |
-| **MCP Server** | Conexión con Obsidian | `npm install -g @n8n/obsidian-mcp-server` |
+| **MCP Server** | Conexión con Obsidian | `cd config && npm install` |
 
 ---
 
@@ -33,6 +33,6 @@ echo 'export ANTHROPIC_API_KEY="sk-ant-xxxxxxxxxxxxx"' >> ~/.zshrc
 ```bash
 node --version          # → v20.x
 claude --version        # → 1.x
-obsidian-mcp-server --version  # → 1.x
+node config/mcp-server.js --version  # → 1.x
 echo $ANTHROPIC_API_KEY # → sk-ant-...
 ```

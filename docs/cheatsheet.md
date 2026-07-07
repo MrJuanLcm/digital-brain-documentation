@@ -15,7 +15,7 @@ sidebar_position: 10
 
 ```bash
 npm install -g @anthropic-ai/claude-code           # Claude Code
-npm install -g @n8n/obsidian-mcp-server            # MCP Server
+cd config && npm install                             # MCP Server (local)
 export ANTHROPIC_API_KEY="sk-ant-..."              # API Key
 ```
 
@@ -25,10 +25,10 @@ export ANTHROPIC_API_KEY="sk-ant-..."              # API Key
 
 ```bash
 # Iniciar MCP Server
-obsidian-mcp-server --vault /ruta/al/vault
+node config/mcp-server.js --vault /ruta/al/vault
 
 # Registrar en Claude
-claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault /ruta/al/vault
+claude mcp add obsidian -- node config/mcp-server.js --vault /ruta/al/vault
 
 # Ver servidores activos
 claude mcp list
@@ -118,7 +118,7 @@ claude "$(cat prompts/graphify-insights.md)"  # Analizar con Claude
 |---|---|
 | `command not found: claude` | `npm install -g @anthropic-ai/claude-code` |
 | `API Key is not set` | `export ANTHROPIC_API_KEY="sk-ant-..."` |
-| `MCP server no conecta` | `claude mcp add obsidian -- npx @n8n/...` |
+| `MCP server no conecta` | `claude mcp add obsidian -- node config/mcp-server.js --vault /ruta/vault` |
 | `Permisos denegados` | `chmod -R 755 /ruta/vault` |
 
 ---

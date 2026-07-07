@@ -49,6 +49,8 @@
 
 ## 📖 Cómo usar esta guía
 
+Este repositorio es una **guía de referencia** para que crees tu propio Digital Brain. Sigue los pasos en orden:
+
 | #   | Paso               | Documento                                                          | Aprenderás                  |
 | --- | ------------------ | ------------------------------------------------------------------ | --------------------------- |
 | 1️⃣  | 🧠 Introducción    | [`docs/01-introduccion.md`](./docs/01-introduccion.md)             | Conceptos y arquitectura    |
@@ -60,20 +62,20 @@
 | 7️⃣  | 🧠 Graphify        | [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md) | Grafo de conocimiento       |
 | 8️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
 
-> 💡 **Tip:** Si eres nuevo, empieza por `docs/01-introduccion.md` y sigue en orden.
+> 💡 **Tip:** Crea una carpeta para tu proyecto personal y copia allí las carpetas `config/`, `prompts/`, `templates/` y `scripts/` cuando las necesites.
 
 ---
 
-## 📂 Estructura del proyecto
+## 📂 Estructura de este repositorio (referencia)
 
-| Carpeta      | Contenido                                                    |
-| ------------ | ------------------------------------------------------------ |
-| `docs/`      | 📖 Documentación detallada (7 guías + glosario + cheatsheet) |
-| `prompts/`   | 🤖 Biblioteca de prompts listos para copiar y pegar          |
-| `scripts/`   | ⚙️ Guías explicativas de automatización                      |
-| `config/`    | 🔧 Archivos de configuración de referencia                   |
-| `templates/` | 📝 Plantillas para notas en Obsidian                         |
-| `examples/`  | 🎯 Ejemplos prácticos y vault de demostración                |
+| Carpeta      | Contenido                                                    | ¿Debo copiarla? |
+| ------------ | ------------------------------------------------------------ | --------------- |
+| `docs/`      | 📖 Guías de documentación (léelas desde aquí)                | ❌ Solo lectura  |
+| `config/`    | 🔧 Servidor MCP + archivos de configuración                  | ✅ Copiar a tu proyecto |
+| `prompts/`   | 🤖 Biblioteca de prompts para Claude                         | ✅ Copiar a tu proyecto |
+| `scripts/`   | ⚙️ Guías de automatización (bash)                            | ✅ Copiar si los usas |
+| `templates/` | 📝 Plantillas para notas en Obsidian                         | ✅ Copiar a tu vault |
+| `examples/`  | 🎯 Ejemplos prácticos y vault de demostración                | ❌ Solo referencia |
 
 ---
 

@@ -45,7 +45,7 @@ sidebar_position: 3
 
 ## 🔧 2. Configuración del MCP Server
 
-### 2.1 Configurar obsidian-mcp-server
+### 2.1 Configurar el servidor MCP
 
 El servidor MCP necesita saber dónde está tu vault:
 
@@ -54,7 +54,7 @@ El servidor MCP necesita saber dónde está tu vault:
 export OBSIDIAN_VAULT_PATH="/ruta/a/tu/vault"
 
 # Método 2: Pasar como argumento
-npx @n8n/obsidian-mcp-server --vault /ruta/a/tu/vault
+node config/mcp-server.js --vault /ruta/a/tu/vault
 ```
 
 ### 2.2 Configurar en Claude Desktop
@@ -65,9 +65,9 @@ Si usas Claude Desktop, agrega esto a `claude_desktop_config.json`:
 {
   "mcpServers": {
     "obsidian": {
-      "command": "npx",
+      "command": "node",
       "args": [
-        "@n8n/obsidian-mcp-server",
+        "config/mcp-server.js",
         "--vault",
         "/ruta/a/tu/vault"
       ]
@@ -80,7 +80,7 @@ Si usas Claude Desktop, agrega esto a `claude_desktop_config.json`:
 
 ```bash
 # Agregar el MCP server
-claude mcp add obsidian -- npx @n8n/obsidian-mcp-server --vault /ruta/a/tu/vault
+claude mcp add obsidian -- node config/mcp-server.js --vault /ruta/a/tu/vault
 
 # Ver servidores configurados
 claude mcp list
@@ -101,8 +101,8 @@ Edita [`../config/harness-config.yaml`](../config/harness-config.yaml) con tus r
 
 ```yaml
 vault_path: "/Users/tu-usuario/DigitalBrain"
-mcp_server: "@n8n/obsidian-mcp-server"
-claude_model: "claude-sonnet-4-20250514"
+  mcp_server: "node config/mcp-server.js"
+  claude_model: "claude-sonnet-4-20250514"
 ```
 
 ### 3.2 Variables de entorno

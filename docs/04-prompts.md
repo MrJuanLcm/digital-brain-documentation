@@ -142,6 +142,23 @@ claude "$(cat prompts/graphify-insights.md)"
 
 ---
 
+## 📂 Cómo usar los prompts en tu proyecto
+
+Los prompts están en la carpeta `prompts/` de este repositorio. Para usarlos en tu proyecto personal:
+
+1. **Copia la carpeta `prompts/`** a la raíz de tu proyecto:
+   ```bash
+   cp -r /ruta/a/este/repo/prompts /ruta/a/tu/proyecto/prompts
+   ```
+
+2. **Ejecuta los prompts** desde la raíz de tu proyecto:
+   ```bash
+   claude "$(cat prompts/procesar-entrada.md)"
+   claude "$(cat prompts/revision-diaria.md)"
+   ```
+
+---
+
 ## 🎯 Cómo personalizar los prompts
 
 Cada prompt está en su propio archivo `.md` dentro de `prompts/`. Puedes editarlos para adaptarlos a tu estilo.
