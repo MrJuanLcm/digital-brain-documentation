@@ -41,7 +41,7 @@ Sistema que combina Obsidian (almacenamiento), Claude Code (procesamiento) y MCP
 ## G
 
 ### Graphify
-Skill para Claude Code que construye automáticamente un grafo de conocimiento a partir de archivos (código, documentación, imágenes, SQL). Se integra con el Digital Brain como una capa de descubrimiento estructural: revela conexiones entre entidades que no son obvias desde las notas individuales. Salida en HTML, Obsidian vault, wiki y JSON. Se instala con `pip install graphifyy && graphify install`.
+Skill para Claude Code que construye automáticamente un grafo de conocimiento a partir de archivos (código, documentación, imágenes, SQL). Se integra con el Digital Brain como una capa de descubrimiento estructural: revela conexiones entre entidades que no son obvias desde las notas individuales. Salida en HTML, Obsidian vault, wiki y JSON. Se instala con `pip install graphifyy`.
 
 ---
 

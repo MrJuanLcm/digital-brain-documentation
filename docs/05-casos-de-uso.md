@@ -25,6 +25,8 @@ sidebar_position: 5
 
 **Situación:** Quieres aprender sobre "Arquitectura Hexagonal" y tener notas organizadas.
 
+> 💡 **`pbpaste` es de macOS.** En Linux usa `xclip -o` (X11) o `wl-paste` (Wayland); en Windows/WSL2, `powershell.exe Get-Clipboard`. También puedes omitirlo y pegar el texto tú mismo.
+
 ```bash
 # 1️⃣ Pega un artículo en el sistema
 pbpaste | claude "$(cat prompts/procesar-entrada.md)"
@@ -34,8 +36,10 @@ pbpaste | claude "$(cat prompts/procesar-entrada.md)"
 #     → Extrae: puertos, adaptadores, dominio, infraestructura
 
 # 3️⃣ Pide a Claude que conecte con lo que ya sabes
-claude "$(cat prompts/generar-insights.md)" \
-  --filter "arquitectura hexagonal"
+#     (el tema se añade al final del prompt, no es un flag de la CLI)
+claude "$(cat prompts/generar-insights.md)
+
+Tema a analizar: arquitectura hexagonal"
 ```
 
 **Resultado:** Una nota estructurada con enlaces a tus notas existentes sobre arquitectura de software.
@@ -70,8 +74,9 @@ for pdf in *.pdf; do
 done
 
 # 2️⃣ Genera un mapa de conceptos
-claude "$(cat prompts/generar-insights.md)" \
-  --filter "examen-biologia"
+claude "$(cat prompts/generar-insights.md)
+
+Tema a analizar: examen-biologia"
 
 # 3️⃣ Pide un resumen unificado
 claude "Crea un MOC (Map of Content) llamado 'Biología - Examen Final'
@@ -147,7 +152,9 @@ cd /ruta/a/tu/vault
 graphify .
 
 # 2️⃣ Abre la visualización HTML
-open graphify-out/graph.html
+open graphify-out/graph.html        # macOS
+xdg-open graphify-out/graph.html    # Linux
+start graphify-out/graph.html       # Windows
 
 # 3️⃣ Abre el vault generado como vault secundario en Obsidian
 #    File → Open vault → Selecciona graphify-out/obsidian/

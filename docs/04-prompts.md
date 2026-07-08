@@ -204,6 +204,8 @@ alias brain-sync='claude "$(cat ~/digital-brain/prompts/sincronizar-vault.md)"'
 
 ### Usar con pipes
 
+> 💡 **`pbpaste` es de macOS.** En Linux usa `xclip -o` (X11) o `wl-paste` (Wayland); en Windows/WSL2, `powershell.exe Get-Clipboard`. También puedes omitirlo y pegar el texto tú mismo.
+
 ```bash
 # Procesar desde el portapapeles (macOS)
 pbpaste | claude "$(cat prompts/procesar-entrada.md)"

@@ -10,15 +10,18 @@
 vault_path: "/Users/tu-usuario/DigitalBrain"
 
 # ─── MCP Server ─────────────────────────────────────────
-# Qué servidor MCP usar para conectar con Obsidian
+# Qué servidor MCP usar para conectar con Obsidian.
+# Recomendado: el servidor local incluido en este repo (config/mcp-server.js),
+# que es el que documentan las guías. Como alternativa puedes usar un paquete
+# publicado en npm, p. ej. "obsidian-mcp" o "obsidian-mcp-server".
 # Opciones:
-#   - "@n8n/obsidian-mcp-server"  (npm global)
-#   - "node config/mcp-server.js"  (servidor local)
-mcp_server: "@n8n/obsidian-mcp-server"
+#   - "node config/mcp-server.js"  (servidor local, recomendado)
+#   - "npx obsidian-mcp"           (paquete npm publicado)
+mcp_server: "node config/mcp-server.js"
 
 # ─── Claude ─────────────────────────────────────────────
-# Modelo de Claude a utilizar
-# claude-sonnet-4-20250514 es el recomendado para tareas de conocimiento
+# Modelo de Claude a utilizar. Consulta los IDs vigentes en
+# https://docs.anthropic.com/en/docs/about-claude/models
 claude_model: "claude-sonnet-4-20250514"
 
 # Prompt de sistema que carga Claude al iniciar
@@ -72,5 +75,5 @@ vault:
 # Ejemplo en ~/.zshrc o ~/.bashrc:
 # export DIGITAL_BRAIN_VAULT_PATH="/mnt/c/Users/Yo/Documents/MiVault"
 # export DIGITAL_BRAIN_MCP_SERVER="node config/mcp-server.js"
-# export DIGITAL_BRAIN_CLAUDE_MODEL="claude-3-5-sonnet-20241022"
+# export DIGITAL_BRAIN_CLAUDE_MODEL="claude-sonnet-4-20250514"
 # export DIGITAL_BRAIN_DEBUG="true"

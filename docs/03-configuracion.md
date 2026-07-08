@@ -47,14 +47,14 @@ sidebar_position: 3
 
 ### 2.1 Configurar el servidor MCP
 
-El servidor MCP necesita saber dónde está tu vault:
+El servidor MCP necesita saber dónde está tu vault. En todos los ejemplos, `/ruta/a/tu/vault` es **la ruta que anotaste en el Paso 1 de la instalación** (la misma que exportaste como `OBSIDIAN_VAULT_PATH`):
 
 ```bash
-# Método 1: Variable de entorno
-export OBSIDIAN_VAULT_PATH="/ruta/a/tu/vault"
+# Método 1: Variable de entorno (recomendado; ya lo hiciste en el Paso 5.1)
+export OBSIDIAN_VAULT_PATH="$HOME/DigitalBrain"
 
 # Método 2: Pasar como argumento
-node config/mcp-server.js --vault /ruta/a/tu/vault
+node config/mcp-server.js --vault "$OBSIDIAN_VAULT_PATH"
 ```
 
 ### 2.2 Configurar en Claude Desktop
@@ -85,24 +85,32 @@ claude mcp add obsidian -- node config/mcp-server.js --vault /ruta/a/tu/vault
 # Ver servidores configurados
 claude mcp list
 
-# Probar la conexión
-claude mcp call obsidian list_notes
+# Ver el detalle del servidor recién añadido
+claude mcp get obsidian
 ```
+
+> 💡 **Probar la conexión de verdad:** abre una sesión con `claude` y pídele
+> algo que use el servidor, p. ej. *"lista las notas de mi vault"* o
+> *"crea una nota de prueba en Inbox"*. Si Claude responde usando las
+> herramientas del MCP, la conexión funciona. (No existe un subcomando
+> `claude mcp call`; las herramientas se invocan desde la conversación.)
 
 ---
 
 ## ⚙️ 3. Configuración del Harness
 
-El Harness orquesta la comunicación entre Claude y Obsidian.
+El "Harness" es la capa de orquestación que coordina Claude, MCP, Obsidian y Graphify. No es un demonio que se ejecute aparte: es la suma de la configuración, el registro MCP, los prompts y los scripts.
 
-### 3.1 Usar el script incluido
+> 📄 Explicación completa de qué es y qué no es el Harness: [`09-harness.md`](./09-harness.md).
 
-Edita [`../config/harness-config.yaml`](../config/harness-config.yaml) con tus rutas:
+### 3.1 Usar la plantilla de configuración incluida
+
+Edita [`../config/harness-config.yaml`](../config/harness-config.yaml) con tus rutas (es una plantilla de referencia; los valores efectivos los toman el servidor MCP y los scripts vía variables de entorno):
 
 ```yaml
 vault_path: "/Users/tu-usuario/DigitalBrain"
-  mcp_server: "node config/mcp-server.js"
-  claude_model: "claude-sonnet-4-20250514"
+mcp_server: "node config/mcp-server.js"
+claude_model: "claude-sonnet-4-20250514"
 ```
 
 ### 3.2 Variables de entorno
@@ -123,11 +131,11 @@ DIGITAL_BRAIN_HOME=~/.digital-brain
 Los prompts están en la carpeta [`../prompts/`](../prompts/). Para usarlos:
 
 ```bash
-# Ejecutar un prompt directamente
+# Ejecutar un prompt en modo interactivo (abre la sesión con ese prompt)
 claude "$(cat prompts/procesar-entrada.md)"
 
-# O cargarlo como instrucción inicial
-claude --prompt "$(cat prompts/revision-diaria.md)"
+# O ejecutarlo en modo no interactivo (imprime la respuesta y termina)
+claude -p "$(cat prompts/revision-diaria.md)"
 ```
 
 ### 4.1 Prompt de sistema personalizado
@@ -146,8 +154,8 @@ Tus funciones son:
 4. Mantener el vault organizado
 EOF
 
-# Decirle a Claude que lo use
-claude --system "$(cat ~/.digital-brain/system-prompt.md)"
+# Decirle a Claude que lo use (se añade al prompt de sistema por defecto)
+claude --append-system-prompt "$(cat ~/.digital-brain/system-prompt.md)"
 ```
 
 ---
@@ -196,18 +204,17 @@ Graphify escanea tu vault de Obsidian y genera un grafo de conocimiento navegabl
 
 ### 6.1 Instalar Graphify
 
+> ℹ️ Si ya lo instalaste en el [Paso 4 de la instalación](./02-instalacion.md), **salta esta parte** y ve directo a la 6.2. Es el mismo paquete.
+
 ```bash
 # Instalar paquete Python (oficial: graphifyy con doble 'y')
 pip install graphifyy
 
-# Instalar skill en Claude Code (auto-detecta plataforma)
-graphify install
-
 # Verificar
-graphify status
+graphify --help
 ```
 
-> 💡 **Tip:** El paquete en PyPI se llama `graphifyy` (doble 'y'). El comando CLI sigue siendo `graphify`.
+> 💡 **Tip:** El paquete en PyPI se llama `graphifyy` (doble 'y') — no es un error de tipeo. El comando CLI sigue siendo `graphify`.
 
 **Extras opcionales:**
 ```bash
@@ -238,10 +245,10 @@ graphify .
 graphify . --obsidian --obsidian-dir ~/vaults/mi-proyecto
 
 # Modo vigilancia (actualiza automáticamente al detectar cambios)
-graphify watch
+graphify . --watch
 
 # Ver estado y configuración
-graphify status
+graphify --help
 
 # Consultar el grafo
 graphify query "¿Cómo se conecta X con Y?"
@@ -249,8 +256,7 @@ graphify query "¿Cómo se conecta X con Y?"
 # Reconstruir solo cambios (incremental via cache SHA256)
 graphify . --update
 
-# Git hook: reconstruir en cada commit
-graphify hook install
+# Reconstruir en cada commit: usa un git hook post-commit que ejecute `graphify . --update`
 ```
 
 ### 6.3 Outputs que genera Graphify
@@ -282,21 +288,23 @@ graphify-out/
 | Reporte | `cat graphify-out/GRAPH_REPORT.md` | God nodes, conexiones sorpresa, preguntas sugeridas |
 | MCP Server | `python -m graphify.serve graphify-out/graph.json` | Herramientas: query_graph, get_node, get_neighbors, shortest_path, get_pr_impact, triage_prs |
 
-> 💡 **Tip:** Añade `graphify-out/` a `.gitignore`. El cache SHA256 hace que re-runs en corpus sin cambios tomen segundos. Usa `graphify hook install` para auto-rebuild en cada commit.
+> 💡 **Tip:** Añade `graphify-out/` a `.gitignore`. El cache SHA256 hace que re-runs en corpus sin cambios tomen segundos. Configura auto-rebuild en cada commit con un git hook post-commit que ejecute `graphify . --update`.
 
 ---
 
 ## 🧪 7. Probar la configuración
 
 ```bash
-# 1. Verificar que el MCP server responde
-claude mcp call obsidian health
+# 1. Verificar que el MCP server está registrado y sano
+claude mcp list          # debe aparecer "obsidian"
+claude mcp get obsidian  # muestra el comando y su estado
 
-# 2. Listar notas del vault
-claude mcp call obsidian list_notes limit=5
+# 2. Probar las herramientas desde una sesión (modo no interactivo)
+claude -p "Lista 5 notas de mi vault de Obsidian usando el MCP"
 
-# 3. Procesar información de prueba
-echo "La teoría de cuerdas propone que..." | claude --prompt "Procesa esta información y guárdala en mi vault:"
+# 3. Procesar información de prueba de extremo a extremo
+echo "La teoría de cuerdas propone que..." | \
+  claude -p "Procesa esta información y guárdala como nota en Inbox de mi vault"
 
 # 4. Verificar que se creó la nota
 ls /ruta/a/tu/vault/Inbox/
@@ -312,7 +320,7 @@ ls /ruta/a/tu/vault/Inbox/
 - [ ] 🤖 Prompts de sistema cargados
 - [ ] 🔐 API Key segura en variable de entorno
 - [ ] 💾 Backups configurados
-- [ ] 🧠 Graphify instalado (`pip install graphifyy && graphify install`)
+- [ ] 🧠 Graphify instalado (`pip install graphifyy`)
 - [ ] 🧪 Prueba de extremo a extremo funcionando
 
 ---

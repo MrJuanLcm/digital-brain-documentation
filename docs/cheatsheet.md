@@ -21,6 +21,21 @@ export ANTHROPIC_API_KEY="sk-ant-..."              # API Key
 
 ---
 
+## 🖥️ Comandos según tu sistema operativo
+
+El núcleo (Node, Python, Claude Code, MCP, Graphify) es igual en los tres SO. Solo cambian estos:
+
+| Acción | 🍎 macOS | 🐧 Linux | 🪟 Windows (WSL2) |
+|---|---|---|---|
+| Pegar del portapapeles | `pbpaste` | `xclip -o` / `wl-paste` | `powershell.exe Get-Clipboard` |
+| Abrir un archivo/HTML | `open archivo` | `xdg-open archivo` | `start archivo` |
+| Perfil de shell | `~/.zshrc` | `~/.bashrc` | `~/.bashrc` (dentro de WSL2) |
+| Ruta del vault en `C:\` | — | — | `/mnt/c/Users/...` |
+
+> 🪟 **Windows nativo (PowerShell/CMD) no está soportado**: la sintaxis `"$(cat ...)"`, `export` y las rutas Unix son de bash. Usa **WSL2** (`wsl --install`).
+
+---
+
 ## 🔌 Conexión Claude ↔ Obsidian
 
 ```bash
@@ -80,10 +95,9 @@ claude "Busca notas sobre [tema] en mi vault"
 
 ```bash
 pip install graphifyy                       # Instalar Graphify
-graphify install                             # Instalar skill en Claude Code
 graphify .                                   # Generar grafo en carpeta actual
-graphify watch                               # Regenerar automáticamente al detectar cambios
-graphify status                              # Ver estado del skill
+graphify . --watch                           # Regenerar automáticamente al detectar cambios
+graphify --help                              # Ver estado del skill
 ```
 
 ### Outputs principales
@@ -99,7 +113,7 @@ graphify status                              # Ver estado del skill
 
 ```bash
 alias brain-graph='graphify .'
-alias brain-graph-watch='graphify watch'
+alias brain-graph-watch='graphify . --watch'
 ```
 
 ### Flujo integrado

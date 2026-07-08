@@ -7,6 +7,8 @@
 
 ## 📥 Paso 1: Procesar todo el material
 
+> 💡 **`pbpaste` es de macOS.** En Linux usa `xclip -o` (X11) o `wl-paste` (Wayland); en Windows/WSL2, `powershell.exe Get-Clipboard`. También puedes omitirlo y pegar el texto tú mismo.
+
 ```bash
 # Procesar PDFs
 for pdf in ~/Downloads/biologia/*.pdf; do

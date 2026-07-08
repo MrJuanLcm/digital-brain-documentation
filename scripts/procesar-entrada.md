@@ -8,6 +8,8 @@
 
 ## Con texto desde el portapapeles
 
+> 💡 **`pbpaste` es de macOS.** En Linux usa `xclip -o` (X11) o `wl-paste` (Wayland); en Windows/WSL2, `powershell.exe Get-Clipboard`. También puedes omitirlo y pegar el texto tú mismo.
+
 ```bash
 # macOS: pegar y procesar
 pbpaste | claude "$(cat prompts/procesar-entrada.md)"

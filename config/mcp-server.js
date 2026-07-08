@@ -8,9 +8,11 @@
  * Expone herramientas para leer, crear y buscar notas
  * en el vault de Obsidian del usuario.
  *
- * Uso:
- *   export OBSIDIAN_VAULT_PATH="/ruta/al/vault"
- *   node mcp-server.js
+ * Uso (cualquiera de estas formas):
+ *   export OBSIDIAN_VAULT_PATH="/ruta/al/vault" && node mcp-server.js
+ *   node mcp-server.js /ruta/al/vault
+ *   node mcp-server.js --vault /ruta/al/vault
+ *   node mcp-server.js --version
  *
  * Requisitos:
  *   - Node.js 18+
@@ -30,11 +32,39 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const SERVER_VERSION = "1.0.0";
+
+// ─── Parseo de argumentos ───────────────────────────────
+/**
+ * Resuelve la ruta del vault desde (en orden de prioridad):
+ *   1. --vault <ruta>  (o --vault=<ruta>)
+ *   2. primer argumento posicional
+ *   3. variable de entorno OBSIDIAN_VAULT_PATH
+ * Soporta también --version / -v.
+ */
+function parseArgs(argv) {
+  const args = argv.slice(2);
+  let vault = null;
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === "--version" || arg === "-v") {
+      console.log(SERVER_VERSION);
+      process.exit(0);
+    } else if (arg === "--vault") {
+      vault = args[++i];
+    } else if (arg.startsWith("--vault=")) {
+      vault = arg.slice("--vault=".length);
+    } else if (!arg.startsWith("-") && vault === null) {
+      vault = arg; // primer posicional
+    }
+  }
+  return vault || process.env.OBSIDIAN_VAULT_PATH || null;
+}
 
 // ─── Configuración ──────────────────────────────────────
-const VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH || process.argv[2];
+const VAULT_PATH = parseArgs(process.argv);
 if (!VAULT_PATH) {
-  console.error("❌ Define OBSIDIAN_VAULT_PATH o pasa la ruta como argumento");
+  console.error("❌ Define OBSIDIAN_VAULT_PATH o pasa la ruta con --vault /ruta/al/vault");
   process.exit(1);
 }
 

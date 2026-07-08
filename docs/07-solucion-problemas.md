@@ -129,8 +129,8 @@ Claude responde: "No encontré notas en tu vault"
 # 1. Verificar que el MCP server funciona
 claude mcp list
 
-# 2. Probar la conexión directamente
-claude mcp call obsidian list_notes limit=5
+# 2. Probar la conexión desde una sesión (las tools se invocan en la conversación)
+claude -p "Lista 5 notas de mi vault de Obsidian usando el MCP"
 
 # 3. Verificar que el vault tiene archivos .md
 ls /ruta/a/tu/vault/**/*.md 2>/dev/null | head -10
@@ -195,8 +195,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 3. **El MCP server no tiene las tools necesarias**
    ```bash
-   # Verificar qué tools están disponibles
-   claude mcp call obsidian list_tools
+   # Verificar que el servidor está registrado y sano
+   claude mcp get obsidian
+   # Y pedir a Claude que use una tool concreta para comprobarla:
+   claude -p "Usa el MCP de Obsidian para darme las estadísticas del vault"
    ```
 
 ---
@@ -249,7 +251,7 @@ Claude responde: "The request timed out" o tarda >30s en responder
 
 | Causa | Solución |
 |-------|----------|
-| Vault muy grande (>5000 notas) | Aumentar timeout: `claude mcp call obsidian list_notes limit=10` |
+| Vault muy grande (>5000 notas) | Pedir menos notas por consulta (p. ej. *"lista solo 10 notas"*) para acotar la respuesta |
 | Servidor MCP desactualizado | Actualizar: `cd config && npm update` |
 | Índice corrupto | No aplica con el servidor local (no usa caché) |
 | Muchas llamadas concurrentes | Usar `limit` en las queries, evitar `list_notes` sin filtro |
@@ -305,8 +307,8 @@ Síntomas: búsquedas lentas, timeouts, alto uso de CPU/memoria.
 **Soluciones:**
 
 ```bash
-# 1. Limitar resultados en consultas
-claude mcp call obsidian search_notes query="tema" limit=20
+# 1. Limitar resultados: pídeselo a Claude en la propia consulta
+claude -p "Busca en mi vault notas sobre 'tema' y muéstrame como mucho 20"
 
 # 2. Excluir carpetas pesadas en config
 # ~/.digital-brain/config.yaml
@@ -340,9 +342,9 @@ graphify .
 
 | Causa | Solución |
 |-------|----------|
-| No instalado | `pip install graphifyy && graphify install` |
+| No instalado | `pip install graphifyy` |
 | No en PATH | `export PATH="$HOME/.local/bin:$PATH"` y reiniciar terminal |
-| Skill no instalado en Claude | `graphify install` (requiere Claude Code) |
+| Skill no instalado en Claude | `/graphify` (auto-instala en el primer uso, requiere Claude Code) |
 | Vault vacío o sin .md | Verifica que hay archivos `.md` en el vault |
 | Permisos | `chmod -R 755 /ruta/a/tu/vault` |
 | Python version | Requiere Python 3.10+, verifica con `python3 --version` |
@@ -352,7 +354,7 @@ graphify .
 ```bash
 # 1. Verificar instalación
 pip show graphifyy
-graphify status
+graphify --help
 
 # 2. Verificar skill en Claude
 claude mcp list

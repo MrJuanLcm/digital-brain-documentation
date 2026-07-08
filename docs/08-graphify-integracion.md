@@ -60,11 +60,8 @@ Procesa el contenido con Claude, extrae entidades y relaciones, y genera un graf
 # 1. Instalar el paquete Python
 pip install graphifyy
 
-# 2. Instalar el skill en Claude Code
-graphify install
-
-# 3. Verificar que quedó instalado
-graphify status
+# 2. Verificar que quedó instalado
+graphify --help
 ```
 
 > 💡 **Tip:** El paquete en PyPI se llama `graphifyy` (con dos `y`) como nombre temporal. El comando CLI sigue siendo `graphify`.
@@ -76,9 +73,8 @@ graphify status
 | Comando            | Descripción                                                            |
 | ------------------ | ---------------------------------------------------------------------- |
 | `graphify .`       | Escanea la carpeta actual y genera el grafo de conocimiento            |
-| `graphify watch`   | Modo vigilancia: regenera el grafo automáticamente al detectar cambios |
-| `graphify status`  | Muestra el estado del skill y la configuración actual                  |
-| `graphify install` | Instala el skill en Claude Code                                        |
+| `graphify . --watch` | Modo vigilancia: regenera el grafo automáticamente al detectar cambios |
+| `graphify . --update` | Actualización incremental (ideal para un git hook post-commit)        |
 | `graphify --help`  | Muestra ayuda completa de todos los comandos                           |
 
 ### Uso típico
@@ -251,7 +247,7 @@ graph TB
 | 🔗 Conexiones     | Manuales (links en notas, MOCs)      | Automáticas (entidades + relaciones extraídas) |
 | 📊 Visibilidad    | Vista parcial por nota               | Mapa completo del conocimiento                 |
 | 🏗️ Estructura     | Tesauro + MOCs + tags                | Grafo navegable + entidades + relaciones       |
-| 🔄 Actualización  | Cuando ejecutas un prompt            | Automática con`graphify watch`                 |
+| 🔄 Actualización  | Cuando ejecutas un prompt            | Automática con`graphify . --watch`             |
 | 📦 Contexto       | El que quepa en la ventana de Claude | Grafo comprimido (71.5x menos tokens)          |
 | 🌐 Formatos       | Solo .md en Obsidian                 | HTML, Obsidian, Wiki, JSON                     |
 | 🎯 Para qué sirve | Procesar información nueva día a día | Ver el panorama completo del proyecto          |
@@ -260,7 +256,7 @@ graph TB
 
 ## 💡 Tips y buenas prácticas
 
-> 💡 **Usa `graphify watch`** cuando estés en una sesión larga de trabajo. Así el grafo se mantiene actualizado sin que tengas que acordarte de regenerarlo.
+> 💡 **Usa `graphify . --watch`** cuando estés en una sesión larga de trabajo. Así el grafo se mantiene actualizado sin que tengas que acordarte de regenerarlo.
 
 > 💡 **El vault de Obsidian** que genera Graphify (`graphify-out/obsidian/`) puedes abrirlo como un vault independiente en Obsidian y usar sus propios plugins (Dataview, Graph View, etc.).
 
@@ -274,4 +270,4 @@ graph TB
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`07-solucion-problemas.md`](./07-solucion-problemas.md) 🛠️ · **Siguiente:** [`glosario.md`](./glosario.md) 📖
+⬅️ **Anterior:** [`07-solucion-problemas.md`](./07-solucion-problemas.md) 🛠️ · **Siguiente:** [`09-harness.md`](./09-harness.md) 🎛️

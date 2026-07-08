@@ -60,9 +60,10 @@ Este repositorio es una **guía de referencia** para que crees tu propio Digital
 | 5️⃣  | 🎯 Casos de uso    | [`docs/05-casos-de-uso.md`](./docs/05-casos-de-uso.md)             | Ejemplos prácticos          |
 | 6️⃣  | 🔌 MCP             | [`docs/06-mcp-explicado.md`](./docs/06-mcp-explicado.md)           | Protocolo MCP en detalle    |
 | 7️⃣  | 🧠 Graphify        | [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md) | Grafo de conocimiento       |
-| 8️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
+| 8️⃣  | 🎛️ Harness         | [`docs/09-harness.md`](./docs/09-harness.md)                       | Capa de orquestación        |
+| 9️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
 
-> 💡 **Tip:** Crea una carpeta para tu proyecto personal y copia allí las carpetas `config/`, `prompts/`, `templates/` y `scripts/` cuando las necesites.
+> 💡 **La forma más rápida de empezar:** clona este repo (`git clone`) y trabaja dentro de esa carpeta — ya trae `config/`, `prompts/`, `templates/` y `scripts/`. El [Paso 0 de la instalación](./docs/02-instalacion.md) lo explica en detalle. La tabla de abajo indica qué carpeta va a dónde si prefieres montarlo a mano.
 
 ---
 
@@ -86,10 +87,10 @@ Graphify complementa tu Digital Brain generando un **grafo de conocimiento persi
 | Comando | Qué hace |
 |---------|----------|
 | `graphify .` | Escanea y genera grafo (entidades + relaciones) |
-| `graphify watch` | Modo vigilancia: actualiza automáticamente |
+| `graphify . --watch` | Modo vigilancia: actualiza automáticamente |
 | `graphify query "..."` | Consulta semántica al grafo |
-| `graphify status` | Estado del skill y configuración |
-| `graphify hook install` | Git hook: rebuild en cada commit |
+| `graphify --help` | Ayuda y comandos disponibles |
+| `graphify . --update` | Actualización incremental (ideal para un git hook post-commit) |
 
 **Outputs:** `graph.html` (visual interactivo), `graphify-out/obsidian/` (vault navegable), `wiki/` (web estática), `GRAPH_REPORT.md` (god nodes, conexiones sorpresa, preguntas), `graph.json` (persistente, NetworkX/Neo4j), `cache/` (SHA256 incremental), `memory/` (Q&A feedback loop).
 
@@ -115,7 +116,7 @@ Graphify complementa tu Digital Brain generando un **grafo de conocimiento persi
 | **Node.js** | v18+ |
 | **npm** | v9+ |
 | **Python** | 3.10+ |
-| **Graphify** | `pip install graphifyy` → [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify) |
+| **Graphify** | `pip install graphifyy` (doble `y`, no es typo) → [`Graphify-Labs/graphify`](https://github.com/Graphify-Labs/graphify) |
 | **Obsidian** | v1.5+ |
 | **Claude API Key** | Anthropic console |
 | **SO** | macOS / Linux / Windows (WSL2) |
