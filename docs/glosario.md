@@ -2,7 +2,7 @@
 title: "Glosario"
 description: "Definiciones de términos técnicos usados en el Digital Brain"
 tags: [glosario, referencia]
-sidebar_position: 9
+sidebar_position: 11
 ---
 
 # 📖 Glosario
@@ -40,6 +40,9 @@ Sistema que combina Obsidian (almacenamiento), Claude Code (procesamiento) y MCP
 
 ## G
 
+### God node (nodo dios)
+En un grafo de conocimiento, un nodo con muchísimas más conexiones que el resto. Suele indicar un concepto central de tu vault, aunque a veces revela una etiqueta demasiado genérica que conviene dividir. Graphify los señala en el `GRAPH_REPORT.md`.
+
 ### Graphify
 Skill para Claude Code que construye automáticamente un grafo de conocimiento a partir de archivos (código, documentación, imágenes, SQL). Se integra con el Digital Brain como una capa de descubrimiento estructural: revela conexiones entre entidades que no son obvias desde las notas individuales. Salida en HTML, Obsidian vault, wiki y JSON. Se instala con `pip install graphifyy`.
 
@@ -48,7 +51,7 @@ Skill para Claude Code que construye automáticamente un grafo de conocimiento a
 ## H
 
 ### Harness
-Capa de orquestación que configura, inicia y gestiona la comunicación entre Claude Code y el MCP Server. Mantiene las rutas, credenciales y procesos necesarios para que el sistema funcione.
+Capa de orquestación que coordina Claude Code, el MCP Server, Obsidian y Graphify. No es un demonio que se ejecute aparte, sino la suma de la configuración, el registro MCP, los prompts y los scripts. Centraliza las rutas y preferencias para que no tengas que recordar comandos sueltos.
 
 ---
 

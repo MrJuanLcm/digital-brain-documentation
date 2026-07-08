@@ -2,7 +2,7 @@
 title: "Configuración"
 description: "Configuración detallada del vault, MCP Server, Harness, prompts y seguridad"
 tags: [configuracion, setup]
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 # ⚙️ Configuración detallada del sistema
@@ -16,7 +16,9 @@ sidebar_position: 3
 - [⚙️ 3. Configuración del Harness](#-3-configuración-del-harness)
 - [🤖 4. Configurar los prompts](#-4-configurar-los-prompts)
 - [🔐 5. Seguridad y buenas prácticas](#-5-seguridad-y-buenas-prácticas)
-- [🧪 6. Probar la configuración](#-6-probar-la-configuración)
+- [🧠 6. Configurar Graphify](#-6-configurar-graphify-grafo-de-conocimiento)
+- [🧪 7. Probar la configuración](#-7-probar-la-configuración)
+- [✅ Checklist de configuración](#-checklist-de-configuración)
 
 ---
 
@@ -33,8 +35,8 @@ sidebar_position: 3
 │   ├── conceptos/
 │   ├── personas/
 │   └── recursos/
-├── 📅 Diario/                      # Daily notes
-│   └── 2024-07-05.md
+├── 📅 Diario/                      # Daily notes (YYYY-MM-DD.md)
+│   └── 2026-07-08.md
 └── 🗺️ MOCs/                       # Maps of Content (índices)
     └── moc-aprendizaje.md
 ```
@@ -67,7 +69,7 @@ Si usas Claude Desktop, agrega esto a `claude_desktop_config.json`:
     "obsidian": {
       "command": "node",
       "args": [
-        "config/mcp-server.js",
+        "/ruta/absoluta/a/mi-cerebro-digital/config/mcp-server.js",
         "--vault",
         "/ruta/a/tu/vault"
       ]
@@ -75,6 +77,8 @@ Si usas Claude Desktop, agrega esto a `claude_desktop_config.json`:
   }
 }
 ```
+
+> ⚠️ En Claude Desktop usa **rutas absolutas** tanto para `mcp-server.js` como para el vault. A diferencia de Claude Code (que arranca desde la raíz de tu proyecto), Desktop no tiene un directorio de trabajo fijo, así que una ruta relativa como `config/mcp-server.js` fallaría.
 
 ### 2.3 Configurar en Claude Code
 

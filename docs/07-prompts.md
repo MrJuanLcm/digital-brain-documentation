@@ -2,7 +2,7 @@
 title: "Biblioteca de prompts"
 description: "Todos los prompts organizados por propósito con ejemplos de uso"
 tags: [prompts, guia]
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # 🤖 Biblioteca de prompts
@@ -16,6 +16,8 @@ sidebar_position: 4
 - [2️⃣ 🔄 Sincronizar vault](#2️⃣--sincronizar-vault)
 - [3️⃣ 💡 Generar insights](#3️⃣--generar-insights)
 - [4️⃣ 📅 Revisión diaria](#4️⃣--revisión-diaria)
+- [5️⃣ 🧠 Analizar grafo (Graphify)](#5️⃣--analizar-grafo-graphify)
+- [📂 Cómo usar los prompts en tu proyecto](#-cómo-usar-los-prompts-en-tu-proyecto)
 - [🎯 Cómo personalizar los prompts](#-cómo-personalizar-los-prompts)
 - [🚀 Tips de uso avanzado](#-tips-de-uso-avanzado)
 

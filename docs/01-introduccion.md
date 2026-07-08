@@ -87,12 +87,12 @@ MCP es como el **USB-C de la IA**: un estándar para que los modelos de lenguaje
 
 ### ⚙️ 4. Harness — El orquestador
 
-El Harness es el gestor que mantiene todo funcionando:
+El Harness es la capa de orquestación que mantiene todo funcionando:
 
-- Inicia el MCP Server cuando lo necesitas
-- Configura las rutas correctas
-- Gestiona las credenciales
-- Asegura que Claude ↔ Obsidian estén siempre conectados
+- Registra el MCP Server para que Claude lo inicie cuando lo necesita
+- Centraliza las rutas y preferencias (vía `harness-config.yaml` y variables de entorno)
+- Reúne prompts y scripts para automatizar el flujo
+- Asegura que Claude ↔ Obsidian ↔ Graphify trabajen como un solo sistema
 
 ### 🧠 5. Graphify — Grafo de conocimiento automático
 

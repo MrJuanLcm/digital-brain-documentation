@@ -2,7 +2,7 @@
 title: "Instalación"
 description: "Guía paso a paso para instalar Node.js, Obsidian, Claude Code y el MCP Server"
 tags: [instalacion, setup]
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 # 📥 Guía de instalación paso a paso

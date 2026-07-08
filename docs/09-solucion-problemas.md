@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Errores comunes, causas y soluciones para problemas del Digital Brain"
 tags: [troubleshooting, errores]
-sidebar_position: 7
+sidebar_position: 9
 ---
 
 # 🛠️ Solución de problemas comunes
@@ -11,7 +11,7 @@ sidebar_position: 7
 
 ## 📋 Tabla de contenidos
 
-- [❌ Problema: Claude Code no se encuentra](#-problema-claude-cli-no-se-encuentra)
+- [❌ Problema: Claude Code no se encuentra](#-problema-claude-code-no-se-encuentra)
 - [❌ Problema: API Key no configurada](#-problema-api-key-no-configurada)
 - [❌ Problema: MCP Server no se conecta](#-problema-mcp-server-no-se-conecta)
 - [❌ Problema: Claude no puede leer mis notas](#-problema-claude-no-puede-leer-mis-notas)
@@ -102,18 +102,23 @@ Error: Could not connect to MCP server obsidian
    cd config && npm install
    ```
 
-3. **Puerto ocupado**
+3. **El comando registrado apunta a otra ruta**
    ```bash
-   # Verificar qué está usando el puerto
-   lsof -i :3000
-   # Cambiar el puerto en la configuración si es necesario
+   # Revisa cómo quedó registrado el servidor
+   claude mcp get obsidian
+   # El comando debe ser: node config/mcp-server.js --vault <tu-ruta>
+   # Si está mal, re-regístralo:
+   claude mcp remove obsidian
+   claude mcp add obsidian -- node config/mcp-server.js --vault "$OBSIDIAN_VAULT_PATH"
    ```
 
-4. **Firewall bloqueando**
+4. **Node no está disponible en el PATH que usa Claude**
    ```bash
-   # En macOS, revisar configuración de firewall
-   # Preferencias del Sistema → Red → Firewall
+   # El servidor se lanza con "node"; comprueba que existe
+   which node || echo "Instala Node.js (ver 04-instalacion.md)"
    ```
+
+> ℹ️ Este servidor MCP se comunica por **stdio** (entrada/salida estándar), no por red: **no abre ningún puerto** ni necesita reglas de firewall. Si algo falla, es la ruta del vault, las dependencias (`npm install`) o el comando registrado — no un puerto ocupado.
 
 ---
 

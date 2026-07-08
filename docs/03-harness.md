@@ -2,7 +2,7 @@
 title: "El Harness"
 description: "La capa de orquestación que conecta Claude, MCP, Obsidian y Graphify en un solo flujo"
 tags: [harness, orquestacion, configuracion, arquitectura]
-sidebar_position: 9
+sidebar_position: 3
 ---
 
 # 🎛️ El Harness — la capa de orquestación

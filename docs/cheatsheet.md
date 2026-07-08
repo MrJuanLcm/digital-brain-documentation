@@ -73,6 +73,7 @@ claude "Busca notas sobre [tema] en mi vault"
 | `read_note` | Lee contenido | `path="nota.md"` |
 | `create_note` | Crea nueva nota | `title="...", content="..."` |
 | `update_note` | Actualiza nota | `path="...", content="..."` |
+| `delete_note` | Elimina nota | `path="..."` |
 | `search_notes` | Busca en vault | `query="machine learning"` |
 | `get_vault_stats` | Estadísticas | — |
 

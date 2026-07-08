@@ -2,7 +2,7 @@
 title: "Graphify: Grafo de conocimiento"
 description: "Integra Graphify con tu Digital Brain para construir grafos de conocimiento automáticos"
 tags: [graphify, knowledge-graph, integracion]
-sidebar_position: 8
+sidebar_position: 6
 ---
 
 # 🧠 Graphify — Grafo de conocimiento automatizado
@@ -101,8 +101,8 @@ graphify-out/
 ├── obsidian/           ← Vault de Obsidian con el grafo como notas
 │   ├── entities/       ← Cada entidad es una nota .md
 │   └── relationships/  ← Relaciones entre entidades
-├── wiki/               ← Wiki navegable en HTML
-│   ├── index.html
+├── wiki/               ← Wiki navegable estilo Wikipedia
+│   ├── index.md
 │   └── ...
 └── cache/              ← Cache para regeneraciones rápidas
     └── ...

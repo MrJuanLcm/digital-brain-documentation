@@ -2,7 +2,7 @@
 title: "Casos de uso"
 description: "Ejemplos prácticos de uso del Digital Brain en situaciones reales"
 tags: [ejemplos, casos-de-uso]
-sidebar_position: 5
+sidebar_position: 8
 ---
 
 # 🎯 Casos de uso prácticos

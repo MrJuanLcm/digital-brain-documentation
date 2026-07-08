@@ -2,7 +2,7 @@
 title: "MCP explicado"
 description: "Model Context Protocol: cómo funciona el puente entre Claude y Obsidian"
 tags: [mcp, protocolo, arquitectura]
-sidebar_position: 6
+sidebar_position: 2
 ---
 
 # 🔌 MCP — Model Context Protocol explicado
@@ -18,6 +18,8 @@ sidebar_position: 6
 - [🛠️ Herramientas que expone nuestro MCP Server](#️-herramientas-que-expone-nuestro-mcp-server)
 - [💡 Ejemplo visual del flujo MCP](#-ejemplo-visual-del-flujo-mcp)
 - [🔗 MCP vs APIs tradicionales](#-mcp-vs-apis-tradicionales)
+- [📐 Diagrama Mermaid](#-diagrama-mermaid)
+- [🚀 ¿Qué más se puede conectar con MCP?](#-qué-más-se-puede-conectar-con-mcp)
 
 ---
 
@@ -167,7 +169,7 @@ Cuando ejecutas el servidor MCP, Claude puede usar estas herramientas:
 
 | Herramienta       | Descripción                  | Ejemplo                                       |
 | ----------------- | ---------------------------- | --------------------------------------------- |
-| `list_notes`      | Lista notas en una carpeta   | `list_notes(path="Inbox/")`                   |
+| `list_notes`      | Lista notas en una carpeta   | `list_notes(folder="Inbox/")`                 |
 | `read_note`       | Lee el contenido de una nota | `read_note(path="mi-nota.md")`                |
 | `create_note`     | Crea una nueva nota          | `create_note(title="Insight", content="...")` |
 | `update_note`     | Actualiza una nota existente | `update_note(path="...", content="...")`      |
