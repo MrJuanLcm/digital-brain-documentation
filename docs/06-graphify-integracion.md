@@ -270,4 +270,4 @@ graph TB
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`07-solucion-problemas.md`](./07-solucion-problemas.md) 🛠️ · **Siguiente:** [`09-harness.md`](./09-harness.md) 🎛️
+⬅️ **Anterior:** [`05-configuracion.md`](./05-configuracion.md) ⚙️ · **Siguiente:** [`07-prompts.md`](./07-prompts.md) 🤖

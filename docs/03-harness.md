@@ -16,6 +16,8 @@ sidebar_position: 9
 - [📄 El archivo `harness-config.yaml`](#-el-archivo-harness-configyaml)
 - [🌱 Variables de entorno](#-variables-de-entorno)
 - [🔄 El bucle autoalimentado](#-el-bucle-autoalimentado)
+- [🧠 Memoria persistente entre sesiones](#-memoria-persistente-entre-sesiones)
+- [📈 Aprendizaje continuo](#-aprendizaje-continuo)
 - [⚠️ Qué NO es el Harness](#️-qué-no-es-el-harness)
 
 ---
@@ -137,6 +139,65 @@ graphify . --watch
 
 ---
 
+## 🧠 Memoria persistente entre sesiones
+
+Por defecto, cada vez que abres Claude Code empieza "en blanco": no recuerda lo que hiciste ayer. En un Digital Brain eso es un desperdicio, porque **tu vault ya es la memoria** — solo falta que Claude la lea al arrancar y la actualice al terminar.
+
+El Harness resuelve esto con **hooks** de Claude Code: pequeños comandos que se ejecutan automáticamente en momentos concretos de la sesión. Los dos que importan aquí:
+
+| Hook           | Cuándo se dispara            | Para qué lo usamos                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------------- |
+| `SessionStart` | Al abrir una sesión          | Cargar contexto: nota diaria de hoy, últimos cambios del vault, tareas    |
+| `Stop`         | Al terminar de responder     | Guardar un resumen de lo tratado en el Inbox o en la nota diaria          |
+
+Ejemplo mínimo en tu `~/.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "cat \"$OBSIDIAN_VAULT_PATH/Diario/$(date +%Y-%m-%d).md\" 2>/dev/null" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Al arrancar, Claude recibe automáticamente tu nota del día como contexto — sin que tengas que pegarla. La salida del hook se inyecta en la conversación.
+
+> 💡 **La idea clave:** no necesitas una "base de datos de memoria" aparte. El vault de Obsidian **es** la memoria; los hooks solo la conectan al principio y al final de cada sesión.
+
+> 📌 **Nota honesta:** los hooks son una capa **opcional** del Harness. El sistema funciona sin ellos (tú mismo puedes pedirle a Claude que lea la nota diaria). Los hooks solo automatizan ese gesto para que no dependa de tu memoria.
+
+---
+
+## 📈 Aprendizaje continuo
+
+Un cerebro digital mejora si **aprende de su propio uso**. El patrón es sencillo: cuando detectas que repites un prompt, una estructura de nota o un flujo, lo **conviertes en algo reutilizable** dentro del proyecto.
+
+```
+🔁 Repites un patrón (mismo prompt 3+ veces)
+   ↓
+📝 Lo extraes a prompts/ como plantilla con nombre
+   ↓
+♻️ La próxima vez lo invocas en vez de reescribirlo
+   ↓
+🧠 El grafo de Graphify conecta las notas que genera
+```
+
+Dónde vive cada tipo de aprendizaje en este proyecto:
+
+- **Prompts recurrentes** → guárdalos en [`../prompts/`](../prompts/) (ver [`07-prompts.md`](./07-prompts.md)).
+- **Estructuras de nota que funcionan** → conviértelas en plantillas en [`../templates/`](../templates/).
+- **Conexiones entre ideas** → deja que Graphify las descubra automáticamente (ver [`06-graphify-integracion.md`](./06-graphify-integracion.md)).
+
+> 💡 Regla práctica: **si haces algo tres veces a mano, la cuarta debería ser una plantilla o un prompt.** Eso es lo que convierte un montón de notas en un sistema que se refuerza solo.
+
+---
+
 ## ⚠️ Qué NO es el Harness
 
 Para evitar confusiones frecuentes:
@@ -149,4 +210,4 @@ Para evitar confusiones frecuentes:
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`08-graphify-integracion.md`](./08-graphify-integracion.md) 🧠 · **Siguiente:** [`glosario.md`](./glosario.md) 📖
+⬅️ **Anterior:** [`02-mcp-explicado.md`](./02-mcp-explicado.md) 🔌 · **Siguiente:** [`04-instalacion.md`](./04-instalacion.md) 📥

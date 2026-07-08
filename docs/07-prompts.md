@@ -223,4 +223,4 @@ pbpaste | claude "$(cat prompts/procesar-entrada.md)" | tee resultado.txt
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`03-configuracion.md`](./03-configuracion.md) ⚙️ · **Siguiente:** [`05-casos-de-uso.md`](./05-casos-de-uso.md) 🎯
+⬅️ **Anterior:** [`06-graphify-integracion.md`](./06-graphify-integracion.md) 🧠 · **Siguiente:** [`08-casos-de-uso.md`](./08-casos-de-uso.md) 🎯

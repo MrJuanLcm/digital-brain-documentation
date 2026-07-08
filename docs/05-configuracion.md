@@ -101,7 +101,7 @@ claude mcp get obsidian
 
 El "Harness" es la capa de orquestación que coordina Claude, MCP, Obsidian y Graphify. No es un demonio que se ejecute aparte: es la suma de la configuración, el registro MCP, los prompts y los scripts.
 
-> 📄 Explicación completa de qué es y qué no es el Harness: [`09-harness.md`](./09-harness.md).
+> 📄 Explicación completa de qué es y qué no es el Harness: [`03-harness.md`](./03-harness.md).
 
 ### 3.1 Usar la plantilla de configuración incluida
 
@@ -204,7 +204,7 @@ Graphify escanea tu vault de Obsidian y genera un grafo de conocimiento navegabl
 
 ### 6.1 Instalar Graphify
 
-> ℹ️ Si ya lo instalaste en el [Paso 4 de la instalación](./02-instalacion.md), **salta esta parte** y ve directo a la 6.2. Es el mismo paquete.
+> ℹ️ Si ya lo instalaste en el [Paso 4 de la instalación](./04-instalacion.md), **salta esta parte** y ve directo a la 6.2. Es el mismo paquete.
 
 ```bash
 # Instalar paquete Python (oficial: graphifyy con doble 'y')
@@ -327,4 +327,4 @@ ls /ruta/a/tu/vault/Inbox/
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`02-instalacion.md`](./02-instalacion.md) 📥 · **Siguiente:** [`04-prompts.md`](./04-prompts.md) 🤖
+⬅️ **Anterior:** [`04-instalacion.md`](./04-instalacion.md) 📥 · **Siguiente:** [`06-graphify-integracion.md`](./06-graphify-integracion.md) 🧠

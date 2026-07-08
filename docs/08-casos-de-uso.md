@@ -197,4 +197,4 @@ claude "$(cat prompts/graphify-insights.md)"
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`04-prompts.md`](./04-prompts.md) 🤖 · **Siguiente:** [`06-mcp-explicado.md`](./06-mcp-explicado.md) 🔌
+⬅️ **Anterior:** [`07-prompts.md`](./07-prompts.md) 🤖 · **Siguiente:** [`09-solucion-problemas.md`](./09-solucion-problemas.md) 🛠️

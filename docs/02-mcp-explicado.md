@@ -274,4 +274,4 @@ Además de Obsidian, MCP puede conectar Claude con:
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`05-casos-de-uso.md`](./05-casos-de-uso.md) 🎯 · **Siguiente:** [`07-solucion-problemas.md`](./07-solucion-problemas.md) 🛠️
+⬅️ **Anterior:** [`01-introduccion.md`](./01-introduccion.md) 🧠 · **Siguiente:** [`03-harness.md`](./03-harness.md) 🎛️

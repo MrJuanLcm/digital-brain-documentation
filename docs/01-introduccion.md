@@ -104,7 +104,7 @@ Graphify complementa el sistema generando un **grafo de conocimiento persistente
 - Crea wiki estática publicable (`wiki/`)
 - Modo `watch` para mantener el grafo sincronizado en tiempo real
 
-> 💡 Ver integración completa en [`08-graphify-integracion.md`](./08-graphify-integracion.md)
+> 💡 Ver integración completa en [`06-graphify-integracion.md`](./06-graphify-integracion.md)
 
 ---
 
@@ -202,4 +202,4 @@ graph TB
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** — · **Siguiente:** [`02-instalacion.md`](./02-instalacion.md) 📥
+⬅️ **Anterior:** — · **Siguiente:** [`02-mcp-explicado.md`](./02-mcp-explicado.md) 🔌

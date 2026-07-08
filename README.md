@@ -12,9 +12,9 @@
 <p align="center">
   <a href="./docs/01-introduccion.md">📖 Empezar</a>
   ·
-  <a href="./docs/02-instalacion.md">📥 Instalación</a>
+  <a href="./docs/04-instalacion.md">📥 Instalación</a>
   ·
-  <a href="./docs/08-graphify-integracion.md">🧠 Graphify</a>
+  <a href="./docs/06-graphify-integracion.md">🧠 Graphify</a>
   ·
   <a href="./docs/cheatsheet.md">📋 Cheatsheet</a>
   ·
@@ -54,16 +54,16 @@ Este repositorio es una **guía de referencia** para que crees tu propio Digital
 | #   | Paso               | Documento                                                          | Aprenderás                  |
 | --- | ------------------ | ------------------------------------------------------------------ | --------------------------- |
 | 1️⃣  | 🧠 Introducción    | [`docs/01-introduccion.md`](./docs/01-introduccion.md)             | Conceptos y arquitectura    |
-| 2️⃣  | 📥 Instalación     | [`docs/02-instalacion.md`](./docs/02-instalacion.md)               | Instalar dependencias       |
-| 3️⃣  | ⚙️ Configuración   | [`docs/03-configuracion.md`](./docs/03-configuracion.md)           | Estructurar vault y Harness |
-| 4️⃣  | 🤖 Prompts         | [`docs/04-prompts.md`](./docs/04-prompts.md)                       | Biblioteca de prompts       |
-| 5️⃣  | 🎯 Casos de uso    | [`docs/05-casos-de-uso.md`](./docs/05-casos-de-uso.md)             | Ejemplos prácticos          |
-| 6️⃣  | 🔌 MCP             | [`docs/06-mcp-explicado.md`](./docs/06-mcp-explicado.md)           | Protocolo MCP en detalle    |
-| 7️⃣  | 🧠 Graphify        | [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md) | Grafo de conocimiento       |
-| 8️⃣  | 🎛️ Harness         | [`docs/09-harness.md`](./docs/09-harness.md)                       | Capa de orquestación        |
-| 9️⃣  | 🛠️ Troubleshooting | [`docs/07-solucion-problemas.md`](./docs/07-solucion-problemas.md) | Errores comunes             |
+| 2️⃣  | 🔌 MCP             | [`docs/02-mcp-explicado.md`](./docs/02-mcp-explicado.md)           | Protocolo MCP en detalle    |
+| 3️⃣  | 🎛️ Harness         | [`docs/03-harness.md`](./docs/03-harness.md)                       | Capa de orquestación        |
+| 4️⃣  | 📥 Instalación     | [`docs/04-instalacion.md`](./docs/04-instalacion.md)               | Instalar dependencias       |
+| 5️⃣  | ⚙️ Configuración   | [`docs/05-configuracion.md`](./docs/05-configuracion.md)           | Estructurar vault y Harness |
+| 6️⃣  | 🧠 Graphify        | [`docs/06-graphify-integracion.md`](./docs/06-graphify-integracion.md) | Grafo de conocimiento       |
+| 7️⃣  | 🤖 Prompts         | [`docs/07-prompts.md`](./docs/07-prompts.md)                       | Biblioteca de prompts       |
+| 8️⃣  | 🎯 Casos de uso    | [`docs/08-casos-de-uso.md`](./docs/08-casos-de-uso.md)             | Ejemplos prácticos          |
+| 9️⃣  | 🛠️ Troubleshooting | [`docs/09-solucion-problemas.md`](./docs/09-solucion-problemas.md) | Errores comunes             |
 
-> 💡 **La forma más rápida de empezar:** clona este repo (`git clone`) y trabaja dentro de esa carpeta — ya trae `config/`, `prompts/`, `templates/` y `scripts/`. El [Paso 0 de la instalación](./docs/02-instalacion.md) lo explica en detalle. La tabla de abajo indica qué carpeta va a dónde si prefieres montarlo a mano.
+> 💡 **La forma más rápida de empezar:** clona este repo (`git clone`) y trabaja dentro de esa carpeta — ya trae `config/`, `prompts/`, `templates/` y `scripts/`. El [Paso 0 de la instalación](./docs/04-instalacion.md) lo explica en detalle. La tabla de abajo indica qué carpeta va a dónde si prefieres montarlo a mano.
 
 ---
 
@@ -94,7 +94,7 @@ Graphify complementa tu Digital Brain generando un **grafo de conocimiento persi
 
 **Outputs:** `graph.html` (visual interactivo), `graphify-out/obsidian/` (vault navegable), `wiki/` (web estática), `GRAPH_REPORT.md` (god nodes, conexiones sorpresa, preguntas), `graph.json` (persistente, NetworkX/Neo4j), `cache/` (SHA256 incremental), `memory/` (Q&A feedback loop).
 
-> 📖 Ver integración completa: [`docs/08-graphify-integracion.md`](./docs/08-graphify-integracion.md)
+> 📖 Ver integración completa: [`docs/06-graphify-integracion.md`](./docs/06-graphify-integracion.md)
 
 ---
 

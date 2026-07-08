@@ -72,7 +72,7 @@ sudo apt-get install -y python3 python3-pip
 > funcionan en PowerShell/CMD nativo**. Instala [WSL2](https://learn.microsoft.com/windows/wsl/install)
 > (`wsl --install` en PowerShell como administrador), abre una terminal Ubuntu y sigue
 > desde ahí los pasos de Linux. Tu vault de Obsidian en `C:\...` es accesible desde
-> WSL2 en `/mnt/c/...` (ver [`07-solucion-problemas.md`](./07-solucion-problemas.md) para rutas con espacios).
+> WSL2 en `/mnt/c/...` (ver [`09-solucion-problemas.md`](./09-solucion-problemas.md) para rutas con espacios).
 
 ---
 
@@ -267,7 +267,7 @@ claude mcp list        # debe aparecer "obsidian"
 
 Puedes centralizar tus rutas y preferencias copiando [`../config/harness-config.yaml`](../config/harness-config.yaml) y editando la ruta del vault.
 
-> 📄 **Importante:** `harness-config.yaml` es una **plantilla de referencia**; hoy no hay ningún programa que la lea automáticamente. Lo que realmente conecta el sistema es el `claude mcp add` de arriba más la variable `OBSIDIAN_VAULT_PATH`. Explicación completa en [`09-harness.md`](./09-harness.md).
+> 📄 **Importante:** `harness-config.yaml` es una **plantilla de referencia**; hoy no hay ningún programa que la lea automáticamente. Lo que realmente conecta el sistema es el `claude mcp add` de arriba más la variable `OBSIDIAN_VAULT_PATH`. Explicación completa en [`03-harness.md`](./03-harness.md).
 
 ---
 
@@ -311,8 +311,8 @@ ls graphify-out/
 
 ---
 
-> 💡 **Tip:** Si encuentras errores durante la instalación, revisa [`07-solucion-problemas.md`](./07-solucion-problemas.md).
+> 💡 **Tip:** Si encuentras errores durante la instalación, revisa [`09-solucion-problemas.md`](./09-solucion-problemas.md).
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`01-introduccion.md`](./01-introduccion.md) 🧠 · **Siguiente:** [`03-configuracion.md`](./03-configuracion.md) ⚙️
+⬅️ **Anterior:** [`03-harness.md`](./03-harness.md) 🎛️ · **Siguiente:** [`05-configuracion.md`](./05-configuracion.md) ⚙️

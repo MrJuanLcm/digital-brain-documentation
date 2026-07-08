@@ -440,8 +440,8 @@ SCRIPT
 
 ## 📞 ¿Sigue sin funcionar?
 
-1. Revisa que seguiste todos los pasos de [`02-instalacion.md`](./02-instalacion.md)
-2. Verifica la configuración en [`03-configuracion.md`](./03-configuracion.md)
+1. Revisa que seguiste todos los pasos de [`04-instalacion.md`](./04-instalacion.md)
+2. Verifica la configuración en [`05-configuracion.md`](./05-configuracion.md)
 3. Abre un issue en el repositorio con:
    - Tu sistema operativo
    - Versiones de Node, npm, Claude
@@ -451,7 +451,7 @@ SCRIPT
 
 ## ➡️ Siguiente paso
 
-⬅️ **Anterior:** [`06-mcp-explicado.md`](./06-mcp-explicado.md) 🔌 · **Siguiente:** [`08-graphify-integracion.md`](./08-graphify-integracion.md) 🧠
+⬅️ **Anterior:** [`08-casos-de-uso.md`](./08-casos-de-uso.md) 🎯 · **Siguiente:** [`glosario.md`](./glosario.md) 📖
 
 ---
 
